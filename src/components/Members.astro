@@ -1,0 +1,21 @@
+---
+const response = await fetch(`${import.meta.env.ROOT_API}/api/v1/Contact`,
+	{
+		headers: {
+			"X-api-key": import.meta.env.ESPO_API_KEY,
+		}
+	},
+);
+
+const members = await response.json() as { list: MemberType[]};
+
+---
+{members.list[0].name}
+<main class="w-screen">
+  <div class="flex flex-row flex-wrap">
+		{members.list
+    .filter((member)=>{return member.type === 'Candidate / Member'})
+    .map((member)=>{
+		return <Member {...member} />
+		})}
+  </div>
