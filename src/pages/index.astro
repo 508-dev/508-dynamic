@@ -3,7 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Member, { MemberType } from '../components/Member.astro';
 import Methodology from '../components/Methodology.astro';
 
-const API_URL = `${import.meta.env.BASEROW_API}database/rows/table/513/?user_field_names=true`
+const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true`
+
 const response = await fetch(API_URL,
 	{
 		headers: {
@@ -30,13 +31,19 @@ interface Content {
 }
 
 
-const json = await response.json() as Results;
+let json;
+let fields = [];
+try {
+    json = await response.json() as Results;
+    fields = json.results.reduce((fieldsObj, block)=>{
+        fieldsObj[block.field] = {...block};
+        return fieldsObj;
+    }, {} as Content);
+} catch (e) {
+
+}
 
 // Turn into dictionary addressable by field
-const fields = json.results.reduce((fieldsObj, block)=>{
-  fieldsObj[block.field] = {...block};
-  return fieldsObj;
-}, {} as Content);
 
 const sections = [
   {
