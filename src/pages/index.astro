@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import Member, { MemberType } from '../components/Member.astro';
 import Methodology from '../components/Methodology.astro';
+import Principles from '../components/Principles.astro';
+import Expertise from '../components/Expertise.astro';
 
 const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true`
 
@@ -90,6 +92,8 @@ const sections = [
       <div class="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32"></div>
     </div>
     <Methodology fields={fields}  sections={sections} />
+    <Principles fields={fields} />
+    <Expertise fields={fields} />
   </div>
 </Layout>
 
