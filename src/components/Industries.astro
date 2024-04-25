@@ -1,0 +1,39 @@
+---
+import { type MemberType } from './Member.astro';
+const { fields, members } = Astro.props;
+const industries = [1,2,3,4];
+
+const colorMap = ['bg-pink-600', 'bg-purple-600', 'bg-yellow-500', 'bg-green-500', 'bg-teal-400'];
+
+function getExpertiseCount(numIndex: number): number {
+  const src = fields[`expertise_${numIndex}_src`]?.content;
+  const mems = members.filter((member: MemberType) => {
+    return member.skills?.includes(src) || false;
+  });
+  return mems.length;
+}
+
+---
+<div class="py-24 sm:py-32 px-6 pattern-indigo-50 pattern-bg-transparent pattern-opacity-100 pattern-size-8 pattern-isometric">
+  <div class="mx-auto max-w-2xl lg:mx-0">
+    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{fields['expertise_title'].content}</h2>
+    <p class="my-6 text-lg leading-8 text-gray-600">{fields['expertise_description'].content}</p>
+  </div>
+  <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
+    {expertise.map((num)=>{
+    return (
+    <li class="col-span-1 flex rounded-md shadow-sm">
+      <div class=`flex w-16 flex-shrink-0 items-center justify-center ${colorMap[num - 1]} rounded-l-md text-sm font-medium text-white`>
+        {fields[`expertise_${num}_logo`].content}
+      </div>
+      <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
+        <div class="flex-1 truncate px-4 py-2 text-sm">
+          <a href="#" class="font-medium text-gray-900 hover:text-gray-600">{fields[`expertise_${num}_name`].content}</a>
+          <p class="text-gray-500">{getExpertiseCount(num)} Members</p>
+        </div>
+      </div>
+    </li>
+    )
+    })}
+  </ul>
+</div>
