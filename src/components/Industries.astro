@@ -1,39 +1,80 @@
 ---
-import { type MemberType } from './Member.astro';
-const { fields, members } = Astro.props;
-const industries = [1,2,3,4];
+const { fields } = Astro.props;
 
-const colorMap = ['bg-pink-600', 'bg-purple-600', 'bg-yellow-500', 'bg-green-500', 'bg-teal-400'];
 
-function getExpertiseCount(numIndex: number): number {
-  const src = fields[`expertise_${numIndex}_src`]?.content;
-  const mems = members.filter((member: MemberType) => {
-    return member.skills?.includes(src) || false;
-  });
-  return mems.length;
-}
+const imgs = [
+  {
+    src: 'amazon.png',
+    alt: 'Amazon',
+  },
+  {
+    src: 'binance.png',
+    alt: 'Binance',
+  },
+  {
+    src: 'dropbox.png',
+    alt: 'Dropbox',
+  },
+  {
+    src: 'ethereumfoundation.png',
+    alt: 'Ethereum Foundation',
+  },
+  {
+    src: 'google.svg',
+    alt: 'Google',
+  },
+  {
+    src: 'jpmorgan.png',
+    alt: 'J.P. Morgan',
+  },
+  {
+    src: 'microsoft.png',
+    alt: 'Microsoft',
+  },
+  {
+    src: 'rakuten.png',
+    alt: 'Rakuten',
+  },
+  {
+    src: 'salesforce.png',
+    alt: 'Salesforce',
+  },
+  {
+    src: 'stripe.png',
+    alt: 'Stripe',
+  },
+  {
+    src: 'tesla.png',
+    alt: 'Tesla',
+  },
+  {
+    src: 'uber.png',
+    alt: 'Uber',
+  },
+  {
+    src: 'unitednations.jpg',
+    alt: 'United Nations',
+  },
+
+];
 
 ---
-<div class="py-24 sm:py-32 px-6 pattern-indigo-50 pattern-bg-transparent pattern-opacity-100 pattern-size-8 pattern-isometric">
-  <div class="mx-auto max-w-2xl lg:mx-0">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{fields['expertise_title'].content}</h2>
-    <p class="my-6 text-lg leading-8 text-gray-600">{fields['expertise_description'].content}</p>
-  </div>
-  <ul role="list" class="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4">
-    {expertise.map((num)=>{
-    return (
-    <li class="col-span-1 flex rounded-md shadow-sm">
-      <div class=`flex w-16 flex-shrink-0 items-center justify-center ${colorMap[num - 1]} rounded-l-md text-sm font-medium text-white`>
-        {fields[`expertise_${num}_logo`].content}
-      </div>
-      <div class="flex flex-1 items-center justify-between truncate rounded-r-md border-b border-r border-t border-gray-200 bg-white">
-        <div class="flex-1 truncate px-4 py-2 text-sm">
-          <a href="#" class="font-medium text-gray-900 hover:text-gray-600">{fields[`expertise_${num}_name`].content}</a>
-          <p class="text-gray-500">{getExpertiseCount(num)} Members</p>
+<div class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-x-8 gap-y-16 lg:grid-cols-2">
+      <div class="mx-auto w-full max-w-xl lg:mx-0">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900">{fields['industries_title']?.content}</h2>
+        <p class="mt-6 text-lg leading-8 text-gray-600">{fields['industries_description']?.content}</p>
+        <div class="mt-8 flex items-center gap-x-6">
+          <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Pricing</a>
+          <a href="https://cal.com/calebjay/30m" class="text-sm font-semibold text-gray-900">Book a meeting<span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
-    </li>
-    )
-    })}
-  </ul>
+      <div class="mx-auto grid w-full max-w-xl grid-cols-2 items-center gap-y-12 sm:gap-y-14 lg:mx-0 lg:max-w-none lg:pl-8">
+      {imgs.map((img)=>(
+      <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src={img.src} alt={img.alt} width="158" height="48">
+      ))}
+    </div>
+  </div>
+  </div>
 </div>
