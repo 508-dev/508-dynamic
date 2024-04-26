@@ -29,17 +29,33 @@ const apiUrl = import.meta.env.ROOT_API;
 
 ---
 
-<li class="card w-72 bg-base-100 shadow-xl m-4 ">
+<li class="flex flex-col gap-6 xl:flex-row">
   {publicPhotoId &&
-	<figure >
-    <a href={publicLink}><img src={publicPhotoName} alt={name} /></a>
-	</figure>
+    <a href={publicLink}>
+      <img class="aspect-[4/5] w-52 flex-none rounded-2xl object-cover" src={publicPhotoName} alt={name}>
+    </a>
   }
   {!publicPhotoId &&
-	<figure >
-    <a href={publicLink}><img src="/anon.webp" alt={name} /></a>
-	</figure>
+    <a href={publicLink}>
+      <img class="aspect-[4/5] w-52 flex-none rounded-2xl object-cover" src="/anon.webp" alt={name}>
+    </a>
   }
+    <div class="flex-auto">
+      {publicLink &&
+      <h3 class="text-lg font-semibold leading-8 tracking-tight text-gray-900">
+		    <a href={publicLink}>{name}</a>
+      </h3>
+      }
+      {!publicLink &&
+      <h3 class="text-lg font-semibold leading-8 tracking-tight text-gray-900">
+		    {name}
+      </h3>
+      }
+
+      <p class="text-base leading-7 text-gray-600">Senior Designer</p>
+      <p class="mt-6 text-base leading-7 text-gray-600">Quia illum aut in beatae. Possimus dolores aliquid accusantium aut in ut non assumenda. Enim iusto molestias aut deleniti eos aliquid magnam molestiae. At et non possimus ab. Magni labore molestiae nulla qui.</p>
+    </div>
+
 	<div class="card-body">
     {publicLink &&
 		<h2 class="card-title"><a href={publicLink}>{name}</a></h2>
