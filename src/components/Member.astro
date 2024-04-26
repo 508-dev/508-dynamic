@@ -9,6 +9,7 @@ export interface MemberType {
   publicPhotoName?: string;
   publicDescription?: string;
   publicLink?: string;
+  cPublicJobTitle?: string;
 }
 interface Props extends MemberType {
 
@@ -24,8 +25,9 @@ const {
   publicDescription,
   publicLink,
   publicPhotoName,
+  cPublicJobTitle,
 } = Astro.props;
-const apiUrl = import.meta.env.ROOT_API;
+
 
 ---
 
@@ -51,29 +53,18 @@ const apiUrl = import.meta.env.ROOT_API;
 		    {name}
       </h3>
       }
+      <p class="text-base leading-7 text-gray-600">{cPublicJobTitle}</p>
+      <p class="mt-6 text-base leading-7 text-gray-600">{publicDescription}</p>
+		  <ul class="flex flex-wrap mt-2">
+			    {skills?.map((skill: string)=> {
+			    return (
+			    <li class="badge badge-outline ml-1 mb-1">{skill}</li>
+			    )
+			    })}
+		  </ul>
 
-      <p class="text-base leading-7 text-gray-600">Senior Designer</p>
-      <p class="mt-6 text-base leading-7 text-gray-600">Quia illum aut in beatae. Possimus dolores aliquid accusantium aut in ut non assumenda. Enim iusto molestias aut deleniti eos aliquid magnam molestiae. At et non possimus ab. Magni labore molestiae nulla qui.</p>
     </div>
 
-	<div class="card-body">
-    {publicLink &&
-		<h2 class="card-title"><a href={publicLink}>{name}</a></h2>
-    }
-    {!publicLink &&
-		<h2 class="card-title">{name}</h2>
-    }
-		<p>
-			{publicDescription}
-		</p>
-		<ul class="flex flex-wrap">
-			{skills?.map((skill: string)=> {
-			return (
-			<li class="badge badge-outline ml-1 mb-1">{skill}</li>
-			)
-			})}
-		</ul>
-	</div>
 </li>
  <style>
 </style>
