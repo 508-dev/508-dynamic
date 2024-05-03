@@ -1,5 +1,7 @@
 ---
 import Member, { MemberType } from '../components/Member.astro';
+
+const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true`
 const membersResponse = await fetch(`${import.meta.env.ROOT_API}/api/v1/Contact`,
 	  {
 		    headers: {
@@ -9,12 +11,32 @@ const membersResponse = await fetch(`${import.meta.env.ROOT_API}/api/v1/Contact`
 );
 
 const members = await membersResponse.json() as { list: MemberType[]};
+const response = await fetch(API_URL,
+	  {
+		    headers: {
+			      "Authorization": `Token ${import.meta.env.BASEROW_API_KEY}`,
+		    }
+	  },
+);
+
+let json;
+let fields = [];
+try {
+    json = await response.json() as Results;
+    fields = json.results.reduce((fieldsObj, block)=>{
+        fieldsObj[block.field] = {...block};
+        return fieldsObj;
+    }, {} as Content);
+} catch (e) {
+
+}
+
 ---
 <div class="bg-white py-24 sm:py-32">
     <div class="mx-auto max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl sm:text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet our leadership</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-600">We’re a dynamic group of individuals who are passionate about what we do and dedicated to delivering the best results for our clients.</p>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{fields['members_title']?.content}</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-600">{fields['members_description']?.content}</p>
         </div>
         <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none">
 		        {
