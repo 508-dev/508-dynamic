@@ -41,6 +41,9 @@ try {
 
 <div class="bg-white py-24 sm:py-32">
   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlSkill = urlParams.get("skill");
+
     // Track button state
     let checked = [false, false, false, false, false];
     // Track selection state per member skill type
@@ -137,6 +140,15 @@ try {
         toggle(el);
       });
     });
+    if (urlSkill) {
+      selected.push(urlSkill);
+      const preToggledButton = document.querySelectorAll(
+        `[data-skill=${urlSkill}]`,
+      );
+      if (preToggledButton[0]) {
+        toggle(preToggledButton[0]);
+      }
+    }
   </script>
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl sm:text-center">
