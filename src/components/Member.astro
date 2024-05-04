@@ -31,7 +31,11 @@ const {
 
 ---
 
-<li class="flex flex-col gap-6 xl:flex-row">
+<li
+  class="flex flex-col gap-6 xl:flex-row member"
+  data-member-skills={skills.join(' ')}
+  id={id}
+>
   {publicPhotoId &&
     <a href={publicLink}>
       <img class="aspect-[4/5] w-52 flex-none rounded-2xl object-cover" src={publicPhotoName} alt={name}>

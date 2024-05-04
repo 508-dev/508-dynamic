@@ -41,34 +41,102 @@ try {
 
 <div class="bg-white py-24 sm:py-32">
   <script>
-   let checked = [false, false, false, false, false];
-   function addClass(element: Element, className: string) {
-     element.classList.add(className);
-   }
-   function removeClass(element: Element, className: string) {
-     element.classList.remove(className);
-   }
-   const checkedClassNames = ["bg-indigo-600", "text-white", "hover:bg-indigo-500"];
-   const unCheckedClassNames = ["ring-1", "ring-inset", "ring-gray-300", "bg-white", "text-gray-900", "hover:bg-gray-50"];
+    // Track button state
+    let checked = [false, false, false, false, false];
+    // Track selection state per member skill type
+    let selected: string[] = [];
+    function addClass(element: Element, className: string) {
+      element.classList.add(className);
+    }
+    function removeClass(element: Element, className: string) {
+      element.classList.remove(className);
+    }
+    const checkedClassNames = [
+      "bg-indigo-600",
+      "text-white",
+      "hover:bg-indigo-500",
+    ];
+    const unCheckedClassNames = [
+      "ring-1",
+      "ring-inset",
+      "ring-gray-300",
+      "bg-white",
+      "text-gray-900",
+      "hover:bg-gray-50",
+    ];
 
-   function toggle(el: Element) {
-     checked[Number(el.id) -1] = !checked[Number(el.id) -1 ];
-     if (checked[Number(el.id) - 1]){
-       checkedClassNames.forEach((name)=>{addClass(el, name)});
-       unCheckedClassNames.forEach((name)=>{removeClass(el, name)});
-     } else {
-       checkedClassNames.forEach((name)=>{removeClass(el, name)});
-       unCheckedClassNames.forEach((name)=>{addClass(el, name)});
-     }
-   }
+    function toggle(el: Element) {
+      if (!(el instanceof HTMLElement)) {
+        return;
+      }
 
-   [...document.getElementsByClassName('expertise')].forEach((el) => {
-     unCheckedClassNames.forEach((name)=>{addClass(el, name)});
-     el.addEventListener("click", (e)=>{
-       e.preventDefault();
-       toggle(el)
-     });
-   });
+      if (selected.includes(String(el.dataset.skill))) {
+        // Toggle it off
+        selected.splice(selected.indexOf(String(el.dataset.skill)), 1);
+      } else {
+        // Toggle it on
+        selected.push(String(el.dataset.skill));
+      }
+      [...document.getElementsByClassName("member")].forEach((memberEl) => {
+        if (
+          !(memberEl instanceof HTMLElement) ||
+          !(el instanceof HTMLElement)
+        ) {
+          return;
+        }
+        memberEl.classList.add("visible");
+        memberEl.classList.remove("invisible");
+        memberEl.classList.remove("order-first");
+        memberEl.classList.remove("order-last");
+      });
+
+      selected.forEach((skillName) => {
+        [...document.getElementsByClassName("member")].forEach((memberEl) => {
+          if (
+            !(memberEl instanceof HTMLElement) ||
+            !(el instanceof HTMLElement)
+          ) {
+            return;
+          }
+          if (
+            memberEl.dataset.memberSkills &&
+            memberEl.dataset.memberSkills.includes(skillName)
+          ) {
+            memberEl.classList.add("visible");
+            memberEl.classList.add("order-first");
+          } else {
+            memberEl.classList.add("invisible");
+            memberEl.classList.add("order-last");
+          }
+        });
+      });
+      checked[Number(el.id) - 1] = !checked[Number(el.id) - 1];
+      if (checked[Number(el.id) - 1]) {
+        checkedClassNames.forEach((name) => {
+          addClass(el, name);
+        });
+        unCheckedClassNames.forEach((name) => {
+          removeClass(el, name);
+        });
+      } else {
+        checkedClassNames.forEach((name) => {
+          removeClass(el, name);
+        });
+        unCheckedClassNames.forEach((name) => {
+          addClass(el, name);
+        });
+      }
+    }
+
+    [...document.getElementsByClassName("expertise")].forEach((el) => {
+      unCheckedClassNames.forEach((name) => {
+        addClass(el, name);
+      });
+      el.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggle(el);
+      });
+    });
   </script>
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto max-w-2xl sm:text-center">
@@ -81,27 +149,30 @@ try {
     </div>
 
     <fieldset class="mt-2">
-      <legend class="sr-only">Choose a memory option</legend>
-      <div class="grid grid-cols-3 gap-3 sm:grid-cols-6">
-
-        {expertise.map((num)=>{
-        return (
-        <label
-          class="flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1 cursor-pointer focus:outline-none expertise"
-          id={String(num)}
-        >
-          <input
-            type="radio"
-            name="memory-option"
-            value="4 GB"
-            class="sr-only"
-            aria-labelledby="memory-option-0-label"
-          />
-          <span id="memory-option-0-label">
-            {fields[`expertise_${num}_name`].content}
-          </span>
-        </label>
-        )})}
+      <legend class="sr-only">Filter by expertise</legend>
+      <div class="grid grid-cols-3 gap-3 sm:grid-cols-5">
+        {
+          expertise.map((num) => {
+            return (
+              <label
+                class="flex items-center justify-center rounded-md py-3 px-3 text-sm font-semibold uppercase sm:flex-1 cursor-pointer focus:outline-none expertise"
+                id={String(num)}
+                data-skill={fields[`expertise_${num}_src`].content}
+              >
+                <input
+                  type="radio"
+                  name="memory-option"
+                  value="4 GB"
+                  class="sr-only"
+                  aria-labelledby="memory-option-0-label"
+                />
+                <span id="memory-option-0-label">
+                  {fields[`expertise_${num}_name`].content}
+                </span>
+              </label>
+            );
+          })
+        }
       </div>
     </fieldset>
 
