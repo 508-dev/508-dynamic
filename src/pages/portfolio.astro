@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioItem, { PortfolioType } from '../components/PortfolioItem.astro';
+import { TextContent, Results, Content} from './index.astro';
+const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true&size=200`
+
+const response = await fetch(API_URL,
+	{
+		headers: {
+			"Authorization": `Token ${import.meta.env.BASEROW_API_KEY}`,
+		}
+	},
+);
+
+let json;
+let fields = [];
+try {
+    json = await response.json() as Results;
+    fields = json.results.reduce((fieldsObj, block)=>{
+        fieldsObj[block.field] = {...block};
+        return fieldsObj;
+    }, {} as Content);
+} catch (e) {
+
+}
+
+const portfolioCount = fields['portfolio_item_count']?.content ? Number(fields['portfolio_item_count']?.content) : 2;
+
+
+---
+
+<Layout title="508.dev Pricing" data-theme="light">
+  <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
+          <div class="mx-auto aspect-[1155/678] w-[102.1875rem] bg-gradient-to-tr from-sky-500 to-sky-50 opacity-30" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+      </div>
+      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+          <h2 class="text-base font-semibold leading-7 text-indigo-600">
+              {fields['portfolio_header_small']?.content}
+          </h2>
+          <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+              {fields['portfolio_header']?.content}
+          </p>
+      </div>
+      <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
+          {fields['portfolio_content']?.content}
+      </p>
+  </div>
+  <div>
+      <div>
+        { [...Array(portfolioCount).keys()].map((i)=>{
+          console.log(i)
+          const item = {
+            id: i + 1,
+            small: fields[`portfolio_item_${i+1}_small`]?.content,
+            header: fields[`portfolio_item_${i+1}_header`]?.content,
+            content_p1: fields[`portfolio_item_${i+1}_content_p1`]?.content,
+            content_p2: fields[`portfolio_item_${i+1}_content_p2`]?.content,
+            content_p3: fields[`portfolio_item_${i+1}_content_p3`]?.content,
+            content_p4: fields[`portfolio_item_${i+1}_content_p4`]?.content,
+            img: fields[`portfolio_item_${i+1}_src`]?.content,
+          };
+          return (
+          <PortfolioItem item={item} />
+          )
+        })}
+
+      </div>
+
+  </div>
+</Layout>
+
+<style>
+</style>

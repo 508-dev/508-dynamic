@@ -1,0 +1,56 @@
+---
+export interface PortfolioType {
+	  id: string;
+	  small: string;
+	  header: string;
+    content_p1: string;
+    content_p2: string;
+    content_p3: string;
+    content_p4: string;
+    img: string;
+}
+const {
+	  id,
+	  small,
+	  header,
+    content_p1,
+    content_p2,
+    content_p3,
+    content_p4,
+    img,
+} = Astro.props.item;
+
+---
+<div class="bg-white py-24 sm:py-32" id={`portfolio-item-${id}`}>
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+            <p class="text-base font-semibold leading-7 text-indigo-600">{small}</p>
+            <h1 class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{header}</h1>
+            <div class="mt-10 grid max-w-xl grid-cols-1 gap-8 text-base leading-7 text-gray-700 lg:max-w-none lg:grid-cols-2">
+                <div>
+                    <p>
+                        {content_p1}
+                    </p>
+                    <p class="mt-8">
+                        {content_p2}
+                    </p>
+                </div>
+                <div>
+                    <p>
+                        {content_p3}
+                    </p>
+                    <p class="mt-8">
+                        {content_p4}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="relative overflow-hidden pt-16 lg:pt-20">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                <img class="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-gray-900/10" src={img} alt="">
+      <div class="relative" aria-hidden="true">
+        <div class="absolute -inset-x-20 bottom-0 bg-gradient-to-t from-white pt-[7%]"></div>
+      </div>
+    </div>
+  </div>
+</div>
