@@ -99,6 +99,8 @@ try {
         // Toggle it on
         selected.push(String(el.dataset.skill));
       }
+
+      // Clear out previous filtered members
       [...document.getElementsByClassName("member")].forEach((memberEl) => {
         if (
           !(memberEl instanceof HTMLElement) ||
@@ -160,10 +162,17 @@ try {
       });
     });
     if (urlSkill) {
-      selected.push(urlSkill);
-      const preToggledButton = document.querySelectorAll(
-        `[data-skill=${urlSkill}]`,
-      );
+      let preToggledButton;
+      if (urlSkill === 'data science') {
+          preToggledButton = document.querySelectorAll(
+              `[data-skill="data science"]`,
+          );
+      } else {
+          preToggledButton = document.querySelectorAll(
+              `[data-skill=${urlSkill}]`,
+          );
+      }
+
       if (preToggledButton[0]) {
         toggle(preToggledButton[0]);
       }
