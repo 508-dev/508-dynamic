@@ -26,7 +26,7 @@ export default {
       },
     },
   },
-  plugins: [require("daisyui"), require("tailwindcss-bg-patterns")],
+    plugins: [require("daisyui"), require("tailwindcss-bg-patterns"), require('@tailwindcss/typography')],
   daisyui: {
     themes: ["light"],
   },

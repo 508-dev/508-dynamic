@@ -12,9 +12,14 @@ const routes = [
     name: 'Members',
     route: '/members',
   },
+  {
+      name: 'Join',
+      route: '/join',
+  },
+
 ];
 ---
-<header class="absolute inset-x-0 top-0 z-50">
+<header class="inset-x-0 top-0 z-50">
   <script>
    function toggleSidebar() {
      [...document.getElementsByClassName("toggleable")].forEach((el)=>(el.classList.toggle('hidden')));
