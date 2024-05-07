@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-import Member, { MemberType } from "../components/Member.astro";
+import type { Results, Content } from './index.astro';
+import Member from "../components/Member.astro";
+import type { MemberType } from "../components/Member.astro";
 const expertise = [1, 2, 3, 4, 5];
 
 const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true`;
@@ -36,7 +37,7 @@ const response = await fetch(API_URL, {
 });
 
 let json;
-let fields = [];
+let fields: Content = {};
 try {
   json = (await response.json()) as Results;
   fields = json.results.reduce((fieldsObj, block) => {
@@ -46,7 +47,7 @@ try {
 } catch (e) {}
 ---
 
-<Layout>
+<Layout title="508.dev Members">
   <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
   <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
       <div

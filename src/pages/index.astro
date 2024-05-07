@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Member, { MemberType } from '../components/Member.astro';
+import type { MemberType } from '../components/Member.astro';
 import Methodology from '../components/Methodology.astro';
 import Principles from '../components/Principles.astro';
 import Expertise from '../components/Expertise.astro';
@@ -45,7 +45,7 @@ export interface Content {
 
 
 let json;
-let fields = [];
+let fields: Content = {};
 try {
     json = await response.json() as Results;
     fields = json.results.reduce((fieldsObj, block)=>{

@@ -1,6 +1,10 @@
 ---
 const { fields, sections } = Astro.props;
 const stats = [1,2,3,4];
+interface Section {
+    href: string,
+    name: string,
+}
 
 ---
     <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32" id="methodology">
@@ -42,8 +46,8 @@ const stats = [1,2,3,4];
         </div>
         <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
           <div class="grid grid-cols-1 gap-x-8 gap-y-6 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-            {sections.map((section) => (
-              <a key={section.name} href={section.href}>
+            {sections.map((section: Section) => (
+              <a id={section.name} href={section.href}>
                 {section.name} <span aria-hidden="true">&rarr;</span>
               </a>
             ))}
@@ -52,7 +56,7 @@ const stats = [1,2,3,4];
             {stats.map((num) => (
             <div>
             {fields[`stats_${num}_number`] && (
-              <div key={fields[`stats_${num}_number`].content} class="flex flex-col-reverse">
+              <div id={fields[`stats_${num}_number`].content} class="flex flex-col-reverse">
                 <dt class="text-base leading-7 text-gray-300">{fields[`stats_${num}_content`].content}</dt>
                 <dd class="text-2xl font-bold leading-9 tracking-tight text-white">{fields[`stats_${num}_number`].content}</dd>
               </div>

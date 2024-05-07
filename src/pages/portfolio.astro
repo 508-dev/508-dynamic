@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PortfolioItem, { PortfolioType } from '../components/PortfolioItem.astro';
-import { TextContent, Results, Content} from './index.astro';
+import PortfolioItem from '../components/PortfolioItem.astro';
+import type { Results, Content} from './index.astro';
 const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true&size=200`
 
 const response = await fetch(API_URL,
@@ -13,7 +13,7 @@ const response = await fetch(API_URL,
 );
 
 let json;
-let fields = [];
+let fields: Content = {};
 try {
     json = await response.json() as Results;
     fields = json.results.reduce((fieldsObj, block)=>{
