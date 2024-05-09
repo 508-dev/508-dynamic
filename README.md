@@ -1,16 +1,64 @@
-# Astro Starter Kit: Basics
+# 508.dev Website
 
-```sh
-npm create astro@latest -- --template basics
+The 508.dev primary website. Also a feeder template for further marketing sites in the future.
+
+Primarily an Astro project. Statically built at build time (server side generated), based on data
+taken from our CRM (espo) and CMS (baserow). Styling done via Tailwind, with most styling taken
+from Tailwind UI (paid component library).
+
+Deployed on our coolify instance, which watches the codeberg repo for changes, and rebuilds on change.
+Future work to include triggering redeploy on changes to the CMS, for now, requires manual redeploy
+when changes occur on CRM or CMS.
+
+In order to change most strings, you'll need a baserow account. Message Caleb, Sam, or Nestor.
+In order to add new members or adjust their skills or descriptions, you'll need an espo account, message Caleb, Sam, or Nestor.
+
+## Development
+
+### Setup
+
+* You must have node vs >= 16. Recommend NVM for node version management.
+* Copy the sample env file to a real env file:
+
+```bash
+cp .sample.env
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+* Populate the `.env` with real API keys and URLs, which you can acquire from the "all 508 members" collection on our password manager, or, ask another member.
+* Install NPM packages
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+```bash
+npm install
+```
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+* Start the dev server
+
+```bash
+npm run dev
+```
+
+* Before making a commit, run prettier
+
+```bash
+npm run prettier
+```
+
+* Also, run typescript checks
+
+```bash
+npm run astro check
+```
+
+### Deployment
+
+Deployment automatically occurs on merge to main. Our coolify instance pulls the latest
+changes, then builds the project:
+
+```bash
+npm run build
+```
+
+It then statically servers the contents of `./dist` .
 
 ## 🚀 Project Structure
 
@@ -36,7 +84,7 @@ There's nothing special about `src/components/`, but that's where we like to put
 
 Any static assets, like images, can be placed in the `public/` directory.
 
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -48,7 +96,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
