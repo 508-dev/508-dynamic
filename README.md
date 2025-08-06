@@ -3,47 +3,46 @@
 The 508.dev primary website. Also a feeder template for further marketing sites in the future.
 
 Primarily an Astro project. Statically built at build time (server side generated), based on data
-taken from our CRM (espo) and CMS (baserow). Styling done via Tailwind, with most styling taken
+taken from our CRM (espo). Styling done via Tailwind, with most styling taken
 from Tailwind UI (paid component library).
 
 Deployed on our coolify instance, which watches the codeberg repo for changes, and rebuilds on change.
 Future work to include triggering redeploy on changes to the CMS, for now, requires manual redeploy
 when changes occur on CRM or CMS.
 
-In order to change most strings, you'll need a baserow account. Message Caleb, Sam, or Nestor.
 In order to add new members or adjust their skills or descriptions, you'll need an espo account, message Caleb, Sam, or Nestor.
 
 ## Development
 
 ### Setup
 
-* You must have node vs >= 16. Recommend NVM for node version management.
-* Copy the sample env file to a real env file:
+- You must have node vs >= 16. Recommend NVM for node version management.
+- Copy the sample env file to a real env file:
 
 ```bash
 cp .sample.env
 ```
 
-* Populate the `.env` with real API keys and URLs, which you can acquire from the "all 508 members" collection on our password manager, or, ask another member.
-* Install NPM packages
+- Populate the `.env` with real API keys and URLs, which you can acquire from the "all 508 members" collection on our password manager, or, ask another member.
+- Install NPM packages
 
 ```bash
 npm install
 ```
 
-* Start the dev server
+- Start the dev server
 
 ```bash
 npm run dev
 ```
 
-* Before making a commit, run prettier
+- Before making a commit, run prettier
 
 ```bash
 npm run prettier
 ```
 
-* Also, run typescript checks
+- Also, run typescript checks
 
 ```bash
 npm run astro check
