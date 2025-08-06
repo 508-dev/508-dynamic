@@ -1,33 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import type { Results, Content} from './index.astro';
-const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true`
-
-const response = await fetch(API_URL,
-	{
-		headers: {
-			"Authorization": `Token ${import.meta.env.BASEROW_API_KEY}`,
-		}
-	},
-);
-
-let json;
-let fields: Content = {};
-try {
-    json = await response.json() as Results;
-    fields = json.results.reduce((fieldsObj, block)=>{
-        fieldsObj[block.field] = {...block};
-        return fieldsObj;
-    }, {} as Content);
-} catch (e) {
-
-}
-const pricing1Count = fields['pricing_1_feature_count']?.content ? Number(fields['pricing_1_feature_count']?.content) : 3;
-const pricing2Count = fields['pricing_2_feature_count']?.content ? Number(fields['pricing_2_feature_count']?.content) : 3;
-const pricingFactsCount = fields['pricing_facts_count']?.content ? Number(fields['pricing_facts_count']?.content) : 3;
-
-
-
+import pricingData from '../content/pricing.json';
 ---
 
 <Layout title="508.dev Pricing" data-theme="light">
@@ -37,27 +10,27 @@ const pricingFactsCount = fields['pricing_facts_count']?.content ? Number(fields
   </div>
   <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
     <h2 class="text-base font-semibold leading-7 text-indigo-600">
-      {fields['pricing_small']?.content}
+      {pricingData.pricing_small}
     </h2>
-    <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">{fields['pricing_title']?.content}</p>
+    <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">{pricingData.pricing_title}</p>
   </div>
-  <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">{fields['pricing_description']?.content}</p>
+  <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">{pricingData.pricing_description}</p>
   <div class="mx-auto mt-16 grid max-w-lg grid-cols-1 items-center gap-y-6 sm:mt-20 sm:gap-y-0 lg:max-w-4xl lg:grid-cols-2">
 
     <div class="rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10 relative bg-white shadow-2xl">
-      <h3 id="tier-personal" class="text-base font-semibold leading-7 text-indigo-600">{fields['pricing_1_title']?.content}</h3>
+      <h3 id="tier-personal" class="text-base font-semibold leading-7 text-indigo-600">{pricingData.pricing_1_title}</h3>
       <p class="mt-4 flex items-baseline gap-x-2">
-        <span class="text-5xl font-bold tracking-tight text-gray-900">{fields['pricing_1_number']?.content}</span>
-        <span class="text-base text-gray-500">{fields['pricing_1_small']?.content}</span>
+        <span class="text-5xl font-bold tracking-tight text-gray-900">{pricingData.pricing_1_number}</span>
+        <span class="text-base text-gray-500">{pricingData.pricing_1_small}</span>
       </p>
-      <p class="mt-6 text-base leading-7 text-gray-600">{fields['pricing_1_description']?.content}</p>
+      <p class="mt-6 text-base leading-7 text-gray-600">{pricingData.pricing_1_description}</p>
       <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 sm:mt-10">
-        { [...Array(pricing1Count).keys()].map((i)=>(
+        { pricingData.pricing_1_features.map((feature)=>(
         <li class="flex gap-x-3">
           <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
           </svg>
-          {fields[`pricing_1_feature_${i+1}`]?.content}
+          {feature}
         </li>
         ))}
       </ul>
@@ -65,19 +38,19 @@ const pricingFactsCount = fields['pricing_facts_count']?.content ? Number(fields
     </div>
 
     <div class="rounded-3xl p-8 ring-1 ring-gray-900/10 sm:p-10 bg-white/60 sm:mx-8 lg:mx-0 sm:rounded-t-none lg:rounded-tr-3xl lg:rounded-bl-none">
-      <h3 id="tier-team" class="text-base font-semibold leading-7 text-indigo-600">{fields['pricing_2_title']?.content}</h3>
+      <h3 id="tier-team" class="text-base font-semibold leading-7 text-indigo-600">{pricingData.pricing_2_title}</h3>
       <p class="mt-4 flex items-baseline gap-x-2">
-        <span class="text-5xl font-bold tracking-tight text-gray-900">{fields['pricing_2_number']?.content}</span>
-        <span class="text-base text-gray-500">{fields['pricing_2_small']?.content}</span>
+        <span class="text-5xl font-bold tracking-tight text-gray-900">{pricingData.pricing_2_number}</span>
+        <span class="text-base text-gray-500">{pricingData.pricing_2_small}</span>
       </p>
-      <p class="mt-6 text-base leading-7 text-gray-600">{fields['pricing_2_description']?.content}</p>
+      <p class="mt-6 text-base leading-7 text-gray-600">{pricingData.pricing_2_description}</p>
       <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 sm:mt-10">
-        { [...Array(pricing2Count).keys()].map((i)=>(
+        { pricingData.pricing_2_features.map((feature)=>(
         <li class="flex gap-x-3">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
-          {fields[`pricing_2_feature_${i+1}`]?.content}
+          {feature}
         </li>
         ))}
       </ul>
@@ -89,23 +62,23 @@ const pricingFactsCount = fields['pricing_facts_count']?.content ? Number(fields
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
       <div>
-        <h2 class="text-base font-semibold leading-7 text-indigo-600">{fields['pricing_facts_small']?.content}</h2>
-        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{fields['pricing_facts_title']?.content}</p>
-        <p class="mt-6 text-base leading-7 text-gray-600">{fields['pricing_facts_description']?.content}</p>
+        <h2 class="text-base font-semibold leading-7 text-indigo-600">{pricingData.pricing_facts_small}</h2>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">{pricingData.pricing_facts_title}</p>
+        <p class="mt-6 text-base leading-7 text-gray-600">{pricingData.pricing_facts_description}</p>
       </div>
       <dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
 
 
-        { [...Array(pricingFactsCount).keys()].map((i)=>(
+        { pricingData.pricing_facts.map((fact)=>(
         <div class="relative pl-9">
           <dt class="font-semibold text-gray-900">
             <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
             </svg>
-            {fields[`pricing_facts_${i+1}_title`]?.content}
+            {fact.title}
           </dt>
           <dd class="mt-2">
-            {fields[`pricing_facts_${i+1}_description`]?.content}
+            {fact.description}
           </dd>
         </div>
         ))}

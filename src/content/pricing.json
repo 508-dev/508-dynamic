@@ -1,0 +1,65 @@
+{
+  "pricing_small": "Pricing",
+  "pricing_title": "Get your money's worth",
+  "pricing_description": "508.dev is a co-op, so we have no overhead for shareholders or owners. That means your money goes further than is possible with traditional corporations.",
+
+  "pricing_1_title": "508.dev",
+  "pricing_1_number": "15%",
+  "pricing_1_small": "co-op cut",
+  "pricing_1_description": "Choosing 508.dev means you get the maximum value for every dollar you spend.",
+  "pricing_1_features": [
+    "Engineers keep majority of the rate",
+    "High project ownership by members",
+    "Small, vetted talent pool ensures quality",
+    "Best possible offshore engineering talent",
+    "Transparent and accurate estimates"
+  ],
+  "pricing_2_title": "Agencies",
+  "pricing_2_number": "30 to 90%",
+  "pricing_2_small": "overhead",
+  "pricing_2_description": "High rates and high margins makes it impossible for agencies to get you good value for your money.",
+  "pricing_2_features": [
+    "Low cut of bill rate means no ownership",
+    "Bloated talent pools, high churn",
+    "No access to the best engineers globally"
+  ],
+  "pricing_facts_small": "Transparency",
+  "pricing_facts_title": "Co-Op Pricing Model",
+  "pricing_facts_description": "508.dev's structure as a co-op means that all members are co-owners. This guarantees the best bang for our client's buck while allowing us to maintain higher engineering standards than any other organization.",
+
+  "pricing_facts": [
+    {
+      "title": "Co-ownership",
+      "description": "Because every member is a co-owner, product ownership is higher than in agencies. The co-op's portfolio and reputation is in the hands of our members."
+    },
+    {
+      "title": "Fair Rates",
+      "description": "Our competitors will bill you 200$/hr and pay their engineer 30$/hr. What quality of work can you expect in that situation?"
+    },
+    {
+      "title": "Unbeatable Margin",
+      "description": "Agencies need high margin for their shareholders. With us, you're able to get as close as possible \"to the metal\" of an engineer's bill rate without onboarding them."
+    },
+    {
+      "title": "High Quality",
+      "description": "We don't have a \"talent pool,\" we have co-op members, all of whom have been rigorously vetted."
+    },
+    {
+      "title": "Transparency",
+      "description": "The people estimating projects are the same people building them, allowing us to give highly accurate estimates."
+    },
+    {
+      "title": "Offshore",
+      "description": "Our engineers across the world are typically available for more competitive rates than local."
+    },
+    {
+      "title": "Organization",
+      "description": "Being a co-owner comes with huge responsibility, meaning membership self-selects for highly independent, self-managed individuals."
+    },
+    {
+      "title": "The Best Team",
+      "description": "Nobody can beat us on our margin on rate, and so we have the best offshore engineers in the world. Plain and simple."
+    }
+  ]
+}
+

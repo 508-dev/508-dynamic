@@ -7,7 +7,9 @@ const colorMap = ['bg-pink-600', 'bg-purple-600', 'bg-yellow-500', 'bg-green-500
 
 function getExpertiseCount(numIndex: number): number {
   const src = fields[`expertise_${numIndex}_src`]?.content;
+  console.log('src')
   const mems = members.filter((member: MemberType) => {
+    console.log(member.skills)
     return member.skills?.includes(src) || false;
   });
   return mems.length;

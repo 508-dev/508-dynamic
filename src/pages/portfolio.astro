@@ -1,70 +1,47 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import PortfolioItem from '../components/PortfolioItem.astro';
-import type { Results, Content} from './index.astro';
-const API_URL = `${import.meta.env.BASEROW_API}/database/rows/table/513/?user_field_names=true&size=200`
-
-const response = await fetch(API_URL,
-	{
-		headers: {
-			"Authorization": `Token ${import.meta.env.BASEROW_API_KEY}`,
-		}
-	},
-);
-
-let json;
-let fields: Content = {};
-try {
-    json = await response.json() as Results;
-    fields = json.results.reduce((fieldsObj, block)=>{
-        fieldsObj[block.field] = {...block};
-        return fieldsObj;
-    }, {} as Content);
-} catch (e) {
-
-}
-
-const portfolioCount = fields['portfolio_item_count']?.content ? Number(fields['portfolio_item_count']?.content) : 2;
-
-
+import Layout from "../layouts/Layout.astro";
+import PortfolioItem from "../components/PortfolioItem.astro";
+import portfolioData from "../content/portfolio.json";
 ---
 
 <Layout title="508.dev Portfolio" data-theme="light">
   <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
-          <h2 class="text-base font-semibold leading-7 text-indigo-600">
-              {fields['portfolio_header_small']?.content}
-          </h2>
-          <p class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
-              {fields['portfolio_header']?.content}
-          </p>
-      </div>
-      <p class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600">
-          {fields['portfolio_content']?.content}
+    <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+      <h2 class="text-base font-semibold leading-7 text-indigo-600">
+        Success with 508
+      </h2>
+      <p
+        class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+      >
+        Our Projects
       </p>
+    </div>
+    <p
+      class="mx-auto mt-6 max-w-2xl text-center text-lg leading-8 text-gray-600"
+    >
+      508.dev has made a habit out of delivering phenomenal engineering to our
+      clients. Learn more about the companies with whom we've created success.
+    </p>
   </div>
   <div>
-      <div>
-        { [...Array(portfolioCount).keys()].map((i)=>{
+    <div>
+      {
+        portfolioData.map((portfolioItem, i) => {
           const item = {
             id: i + 1,
-            small: fields[`portfolio_item_${i+1}_small`]?.content,
-            header: fields[`portfolio_item_${i+1}_header`]?.content,
-            content_p1: fields[`portfolio_item_${i+1}_content_p1`]?.content,
-            content_p2: fields[`portfolio_item_${i+1}_content_p2`]?.content,
-            content_p3: fields[`portfolio_item_${i+1}_content_p3`]?.content,
-            content_p4: fields[`portfolio_item_${i+1}_content_p4`]?.content,
-            img: fields[`portfolio_item_${i+1}_src`]?.content,
+            small: portfolioItem.subtitle,
+            header: portfolioItem.title,
+            content_p1: portfolioItem.p[0],
+            content_p2: portfolioItem.p[1],
+            content_p3: portfolioItem.p[2],
+            content_p4: portfolioItem.p[3],
+            img: portfolioItem.img,
           };
-          return (
-          <PortfolioItem item={item} />
-          )
-        })}
-
-      </div>
-
+          return <PortfolioItem item={item} />;
+        })
+      }
+    </div>
   </div>
 </Layout>
 
-<style>
-</style>
+<style></style>
