@@ -27,7 +27,7 @@ const portfolioData = (await getEntry('data', 'portfolio')).data;
   <div>
     <div>
       {
-        portfolioData.map((portfolioItem, i) => {
+        portfolioData.map((portfolioItem: PortfolioItem, i: number) => {
           const item = {
             id: i + 1,
             small: portfolioItem.subtitle,
