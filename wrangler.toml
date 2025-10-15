@@ -1,0 +1,3 @@
+name = "508-dynamic"
+compatibility_date = "2025-10-14"
+pages_build_output_dir = "dist"
