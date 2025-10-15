@@ -1,7 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PortfolioItem from "../components/PortfolioItem.astro";
-import portfolioData from "../content/portfolio.json";
+import { getEntry } from 'astro:content';
+const portfolioData = (await getEntry('data', 'portfolio')).data;
 ---
 
 <Layout title="508.dev Portfolio" data-theme="light">

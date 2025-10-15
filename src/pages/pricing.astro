@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import pricingData from '../content/pricing.json';
+import { getEntry } from 'astro:content';
+const pricingData = (await getEntry('data', 'pricing')).data;
 ---
 
 <Layout title="508.dev Pricing" data-theme="light">
