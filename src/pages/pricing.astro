@@ -2,6 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 const pricingData = (await getEntry('data', 'pricing')).data;
+
+interface PricingFact {
+  title: string;
+  description: string;
+}
 ---
 
 <Layout title="508.dev Pricing" data-theme="light">
@@ -46,7 +51,7 @@ const pricingData = (await getEntry('data', 'pricing')).data;
       </p>
       <p class="mt-6 text-base leading-7 text-gray-600">{pricingData.pricing_2_description}</p>
       <ul role="list" class="mt-8 space-y-3 text-sm leading-6 text-gray-600 sm:mt-10">
-        { pricingData.pricing_2_features.map((feature)=>(
+        { pricingData.pricing_2_features.map((feature: string)=>(
         <li class="flex gap-x-3">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width={1.5} stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
@@ -70,7 +75,7 @@ const pricingData = (await getEntry('data', 'pricing')).data;
       <dl class="col-span-2 grid grid-cols-1 gap-x-8 gap-y-10 text-base leading-7 text-gray-600 sm:grid-cols-2 lg:gap-y-16">
 
 
-        { pricingData.pricing_facts.map((fact)=>(
+        { pricingData.pricing_facts.map((fact: PricingFact)=>(
         <div class="relative pl-9">
           <dt class="font-semibold text-gray-900">
             <svg class="absolute left-0 top-1 h-5 w-5 text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

@@ -2,7 +2,15 @@
 import Layout from "../layouts/Layout.astro";
 import PortfolioItem from "../components/PortfolioItem.astro";
 import { getEntry } from 'astro:content';
-const portfolioData = (await getEntry('data', 'portfolio')).data;
+
+interface PortfolioItemData {
+  subtitle: string;
+  title: string;
+  p: string[];
+  img: string;
+}
+
+const portfolioData = (await getEntry('data', 'portfolio')).data as PortfolioItemData[];
 ---
 
 <Layout title="508.dev Portfolio" data-theme="light">
@@ -27,7 +35,7 @@ const portfolioData = (await getEntry('data', 'portfolio')).data;
   <div>
     <div>
       {
-        portfolioData.map((portfolioItem: PortfolioItem, i: number) => {
+        portfolioData.map((portfolioItem: PortfolioItemData, i: number) => {
           const item = {
             id: i + 1,
             small: portfolioItem.subtitle,
