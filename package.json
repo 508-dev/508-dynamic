@@ -12,9 +12,9 @@
     "eslint": "eslint src/ --fix"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/tailwind": "^5.1.0",
-    "astro": "^4.5.12",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^5.14.5",
     "tailwindcss": "^3.4.3",
     "tailwindcss-bg-patterns": "^0.3.0",
     "typescript": "^5.4.3"
