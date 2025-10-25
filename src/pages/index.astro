@@ -4,8 +4,9 @@ import type { MemberType } from "../components/Member.astro";
 import Methodology from "../components/Methodology.astro";
 import Principles from "../components/Principles.astro";
 import Expertise from "../components/Expertise.astro";
+import { getEntry } from 'astro:content';
 import Industries from "../components/Industries.astro";
-import homepageData from "../content/homepage.json";
+const homepageData = (await getEntry('data', 'homepage')).data;
 
 const membersResponse = await fetch(
   `${import.meta.env.ROOT_API}/api/v1/Contact`,
