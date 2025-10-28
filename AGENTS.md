@@ -47,9 +47,8 @@ Required in `.env`:
 - `ROOT_API` - Base URL for CRM API
 
 ### Deployment
-- **Platform**: Coolify instance with automatic builds on main branch merge
 - **Build Output**: Static files served from `./dist/`
-- **CloudFlare Workers**: Configured via `wrangler.toml` for edge deployment
+- **CloudFlare Workers**: The static site is built via CloudFlare workers. Preview deployments are available for PRs.
 
 ### Styling
 - **Framework**: Tailwind CSS with DaisyUI components
