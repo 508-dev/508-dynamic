@@ -230,7 +230,7 @@ members.list.sort((a: MemberType, b: MemberType) => {
           {
             members.list
               .filter((member) => {
-                return member.type === "Candidate / Member";
+                return member.type === "Candidate / Member" || member.type === "Member";
               })
               .map((member) => {
                 return <Member {...member} />;
