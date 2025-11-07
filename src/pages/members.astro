@@ -96,20 +96,16 @@ members.list.sort((a: MemberType, b: MemberType) => {
           const nullStateEl = document.getElementById("null-state");
           const memberListEl = document.getElementById("member-list");
           
-          // Count visible members
-          const visibleMembers = [...document.getElementsByClassName("member")].filter(
-            (memberEl) => memberEl.classList.contains("visible") && !memberEl.classList.contains("invisible")
-          );
+          // Count members that are visible (not hidden by filters)
+          const visibleCount = [...document.getElementsByClassName("member")].filter(
+            (el) => !el.classList.contains("invisible")
+          ).length;
 
-          if (selected.length > 0 && visibleMembers.length === 0) {
-            // Filters are active but no members match
-            if (nullStateEl) nullStateEl.classList.remove("hidden");
-            if (memberListEl) memberListEl.classList.add("hidden");
-          } else {
-            // Show member list
-            if (nullStateEl) nullStateEl.classList.add("hidden");
-            if (memberListEl) memberListEl.classList.remove("hidden");
-          }
+          // Show null state only when filters are active and nothing matches
+          const showNullState = selected.length > 0 && visibleCount === 0;
+          
+          nullStateEl?.classList.toggle("hidden", !showNullState);
+          memberListEl?.classList.toggle("hidden", showNullState);
         }
 
         function clearAllFilters() {
@@ -136,23 +132,11 @@ members.list.sort((a: MemberType, b: MemberType) => {
           updateNullState();
         }
 
-        // Make clearAllFilters globally accessible
-        (window as any).clearAllFilters = clearAllFilters;
-
-        // Set up clear filters button listener
-        function setupClearButton() {
-          const clearButton = document.getElementById("clear-filters-btn");
-          if (clearButton) {
-            clearButton.addEventListener("click", (e) => {
-              e.preventDefault();
-              clearAllFilters();
-            });
-          } else {
-            // Retry if button doesn't exist yet
-            setTimeout(setupClearButton, 100);
-          }
-        }
-        setupClearButton();
+        // Set up clear filters button (runs after DOM is loaded in Astro)
+        document.getElementById("clear-filters-btn")?.addEventListener("click", (e) => {
+          e.preventDefault();
+          clearAllFilters();
+        });
 
         function toggle(el: Element) {
           if (!(el instanceof HTMLElement)) {
