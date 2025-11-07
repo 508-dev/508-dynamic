@@ -8,7 +8,7 @@
   "pricing_1_small": "co-op cut",
   "pricing_1_description": "Choosing 508.dev means you get the maximum value for every dollar you spend.",
   "pricing_1_features": [
-    "Engineers keep majority of the rate",
+    "Engineers keep the majority of the rate",
     "High project ownership by members",
     "Small, vetted talent pool ensures quality",
     "Best possible offshore engineering talent",
@@ -17,7 +17,7 @@
   "pricing_2_title": "Agencies",
   "pricing_2_number": "30 to 90%",
   "pricing_2_small": "overhead",
-  "pricing_2_description": "High rates and high margins makes it impossible for agencies to get you good value for your money.",
+  "pricing_2_description": "High rates and high margins make it impossible for agencies to get you good value for your money.",
   "pricing_2_features": [
     "Low cut of bill rate means no ownership",
     "Bloated talent pools, high churn",
@@ -25,7 +25,7 @@
   ],
   "pricing_facts_small": "Transparency",
   "pricing_facts_title": "Co-Op Pricing Model",
-  "pricing_facts_description": "508.dev's structure as a co-op means that all members are co-owners. This guarantees the best bang for our client's buck while allowing us to maintain higher engineering standards than any other organization.",
+  "pricing_facts_description": "508.dev's structure as a co-op means that all members are co-owners. This guarantees the best bang for our clients' buck while allowing us to maintain higher engineering standards than any other organization.",
 
   "pricing_facts": [
     {
@@ -58,7 +58,7 @@
     },
     {
       "title": "The Best Team",
-      "description": "Nobody can beat us on our margin on rate, and so we have the best offshore engineers in the world. Plain and simple."
+      "description": "Nobody can beat us on our margin on rate, so we have the best offshore engineers in the world. Plain and simple."
     }
   ]
 }
