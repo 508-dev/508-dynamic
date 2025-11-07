@@ -11,11 +11,11 @@ headingSummary:
 
 ## Why Join a Co-op?
 
-Working with an engineering co-op can be a good fit for an engineer in any stage
+Working with an engineering co-op can be a good fit for an engineer at any stage
 of their career, depending on their goals. With a co-op, statistically you're
 more likely to have your job, should you still want it, after five years,
 because co-ops are both more likely than "traditional" businesses to survive
-over any length of time, and also co-ops are less likely to lay off staff than
+over any length of time, and co-ops are also less likely to lay off staff than
 "traditional" businesses over any length of time.
 
 For 508.dev, our co-op philosophy goes much further than that. We believe that
@@ -55,7 +55,7 @@ you'll be asked to make a semi-trivial contribution to the co-op, either to one
 of our FOSS projects, our blog, or in some other way. You can learn more about
 the contribution requirement on our
 [wiki](https://wiki.508.dev/s/contributing-to-508). If you want to explore this,
-email <hello@508.dev>
+email us at <hello@508.dev>.
 
 ## What Does it Mean to be a Member of 508.dev?
 
@@ -70,13 +70,13 @@ consensus strategy of
 hierarchy is similar to that of
 [Valve's](https://steamcdn-a.akamaihd.net/apps/valve/Valve_NewEmployeeHandbook.pdf).
 
-Members are invited to participate in open source projects so as to further
-develop their portfolio, or, propose their own projects so as to get assistance
+Members are invited to participate in open source projects to further
+develop their portfolio, or propose their own projects to get assistance
 developing a project that's too large to work on as an individual. Members are
-invited to ask questions of other members, especially on topics you may not be
-that experienced in, but another member is experienced in. A large goal of
+invited to ask questions of other members, especially on topics they may not be
+experienced in, but another member is experienced in. A large goal of
 508.dev is the professional development of all its members. As we develop
-eachother further, we open up more client opportunities.
+each other further, we open up more client opportunities.
 
 ## Values
 

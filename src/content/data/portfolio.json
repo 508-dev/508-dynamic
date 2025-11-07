@@ -26,7 +26,7 @@
     "img": "shareyourpath.png",
     "p": [
       "Share Your Path is an interactive guide that takes expertise from professional career coaches and automates the tedious parts.",
-      "Share Your Path is working with 508.dev to build out their fullstack CMS and React webapp learning and personal marketing platform."
+      "Share Your Path is working with 508.dev to build out their full-stack CMS and React web app learning and personal marketing platform."
     ]
   },
   {
@@ -38,7 +38,7 @@
 
       "508.dev worked with the CEO to design a new platform, then engineered from scratch a Next.js 14 SPA that communicated with a GraphQL backend.",
 
-      "Next.js 14 had just released and the Apollo GraphQL library wasn't fully compatible, so 508.dev engineers made commits on the Apollo library to update compatibility.",
+      "Next.js 14 had just been released and the Apollo GraphQL library wasn't fully compatible, so 508.dev engineers made commits on the Apollo library to update compatibility.",
 
       "The result is a highly functional stream and chat application where power users can manage their entire streaming experience, including games and chat gifts."
     ]
@@ -48,8 +48,8 @@
     "subtitle": "Independent Film Festival",
     "img": "sundance.png",
     "p": [
-      "Sundance Film Festival is the largest independent film festival in the USA, and for the last few years there have been international festivals held. In 2024 Sundance Film Festival was held in Taiwan.",
-      "508.dev assigned a local Taiwanese developer to rapidly iterate on designs, as well as assist in accurate English and Mandarin localized copy.",
+      "Sundance Film Festival is the largest independent film festival in the USA, and international festivals have been held for the last few years. In 2024, Sundance Film Festival was held in Taiwan.",
+      "508.dev assigned a local Taiwanese developer to rapidly iterate on designs, as well as assist with accurate English and Mandarin localization.",
       "Site features included ticketing information, film festival entries, news, event information, and presentation of the festival's award-winning shorts."
     ]
   },
@@ -68,7 +68,7 @@
     "subtitle": "Private Trading Firm",
     "img": "",
     "p": [
-      "Due to a rigid NDA, there's very little we can share about this client or project. The client engages in large-volume cryptocurrency trading, and had developed Alpha they wished represented in an automated trading platform.",
+      "Due to a rigid NDA, there's very little we can share about this client or project. The client engages in large-volume cryptocurrency trading, and had developed Alpha they wished to have represented in an automated trading platform.",
       "508.dev organized a team of five engineers to quickly iterate on the client's algorithm, building out an automated trading platform in Python that surpassed all latency targets by a factor of 100x.",
       "508.dev also developed a fully-featured admin panel in Next.js to manage the trading platform."
     ]
