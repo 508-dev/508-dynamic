@@ -13,7 +13,7 @@ headingSummary:
 
 Working with an engineering co-op can be a good fit for an engineer in any stage
 of their career, depending on their goals. With a co-op, statistically you're
-more likely to have your job, should you want still want it, after five years,
+more likely to have your job, should you still want it, after five years,
 because co-ops are both more likely than "traditional" businesses to survive
 over any length of time, and also co-ops are less likely to lay off staff than
 "traditional" businesses over any length of time.
