@@ -92,6 +92,52 @@ members.list.sort((a: MemberType, b: MemberType) => {
           "hover:bg-gray-50",
         ];
 
+        function updateNullState() {
+          const nullStateEl = document.getElementById("null-state");
+          const memberListEl = document.getElementById("member-list");
+          
+          // Count members that are visible (not hidden by filters)
+          const visibleCount = [...document.getElementsByClassName("member")].filter(
+            (el) => !el.classList.contains("invisible")
+          ).length;
+
+          // Show null state only when filters are active and nothing matches
+          const showNullState = selected.length > 0 && visibleCount === 0;
+          
+          nullStateEl?.classList.toggle("hidden", !showNullState);
+          memberListEl?.classList.toggle("hidden", showNullState);
+        }
+
+        function clearAllFilters() {
+          selected = [];
+          checked = [false, false, false, false, false];
+          
+          [...document.getElementsByClassName("expertise")].forEach((el) => {
+            checkedClassNames.forEach((name) => {
+              removeClass(el, name);
+            });
+            unCheckedClassNames.forEach((name) => {
+              addClass(el, name);
+            });
+          });
+          
+          // Clear out previous filtered members
+          [...document.getElementsByClassName("member")].forEach((memberEl) => {
+            memberEl.classList.add("visible");
+            memberEl.classList.remove("invisible");
+            memberEl.classList.remove("order-first");
+            memberEl.classList.remove("order-last");
+          });
+          
+          updateNullState();
+        }
+
+        // Set up clear filters button (runs after DOM is loaded in Astro)
+        document.getElementById("clear-filters-btn")?.addEventListener("click", (e) => {
+          e.preventDefault();
+          clearAllFilters();
+        });
+
         function toggle(el: Element) {
           if (!(el instanceof HTMLElement)) {
             return;
@@ -141,8 +187,9 @@ members.list.sort((a: MemberType, b: MemberType) => {
               },
             );
           });
-          checked[Number(el.id) - 1] = !checked[Number(el.id) - 1];
-          if (checked[Number(el.id) - 1]) {
+          
+          checked[Number(el.id)] = !checked[Number(el.id)];
+          if (checked[Number(el.id)]) {
             checkedClassNames.forEach((name) => {
               addClass(el, name);
             });
@@ -157,6 +204,8 @@ members.list.sort((a: MemberType, b: MemberType) => {
               addClass(el, name);
             });
           }
+          
+          updateNullState();
         }
 
         [...document.getElementsByClassName("expertise")].forEach((el) => {
@@ -223,7 +272,20 @@ members.list.sort((a: MemberType, b: MemberType) => {
           </div>
         </fieldset>
 
+        <div id="null-state" class="hidden mt-20 text-center">
+          <p class="text-lg font-semibold text-gray-900">
+            No members match the selected filters.
+          </p>
+          <button
+            id="clear-filters-btn"
+            class="mt-4 rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
+          >
+            Clear all filters
+          </button>
+        </div>
+
         <ul
+          id="member-list"
           role="list"
           class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
         >
