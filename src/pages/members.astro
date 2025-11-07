@@ -98,7 +98,7 @@ members.list.sort((a: MemberType, b: MemberType) => {
           
           // Count members that are visible (not hidden by filters)
           const visibleCount = [...document.getElementsByClassName("member")].filter(
-            (el) => !el.classList.contains("invisible")
+            (el) => !el.classList.contains("hidden")
           ).length;
 
           // Show null state only when filters are active and nothing matches
@@ -123,8 +123,7 @@ members.list.sort((a: MemberType, b: MemberType) => {
           
           // Clear out previous filtered members
           [...document.getElementsByClassName("member")].forEach((memberEl) => {
-            memberEl.classList.add("visible");
-            memberEl.classList.remove("invisible");
+            memberEl.classList.remove("hidden");
             memberEl.classList.remove("order-first");
             memberEl.classList.remove("order-last");
           });
@@ -159,8 +158,7 @@ members.list.sort((a: MemberType, b: MemberType) => {
             ) {
               return;
             }
-            memberEl.classList.add("visible");
-            memberEl.classList.remove("invisible");
+            memberEl.classList.remove("hidden");
             memberEl.classList.remove("order-first");
             memberEl.classList.remove("order-last");
           });
@@ -178,10 +176,10 @@ members.list.sort((a: MemberType, b: MemberType) => {
                   memberEl.dataset.memberSkills &&
                   memberEl.dataset.memberSkills.includes(skillName)
                 ) {
-                  memberEl.classList.add("visible");
+                  memberEl.classList.remove("hidden");
                   memberEl.classList.add("order-first");
                 } else {
-                  memberEl.classList.add("invisible");
+                  memberEl.classList.add("hidden");
                   memberEl.classList.add("order-last");
                 }
               },
