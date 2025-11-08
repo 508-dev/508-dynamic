@@ -163,28 +163,29 @@ members.list.sort((a: MemberType, b: MemberType) => {
             memberEl.classList.remove("order-last");
           });
 
-          selected.forEach((skillName) => {
-            [...document.getElementsByClassName("member")].forEach(
-              (memberEl) => {
-                if (
-                  !(memberEl instanceof HTMLElement) ||
-                  !(el instanceof HTMLElement)
-                ) {
-                  return;
-                }
-                if (
-                  memberEl.dataset.memberSkills &&
-                  memberEl.dataset.memberSkills.includes(skillName)
-                ) {
-                  memberEl.classList.remove("hidden");
-                  memberEl.classList.add("order-first");
-                } else {
-                  memberEl.classList.add("hidden");
-                  memberEl.classList.add("order-last");
-                }
-              },
-            );
-          });
+          // Show members only if they have ALL selected skills (AND logic)
+          [...document.getElementsByClassName("member")].forEach(
+            (memberEl) => {
+              if (!(memberEl instanceof HTMLElement)) {
+                return;
+              }
+              
+              const memberSkills = memberEl.dataset.memberSkills || "";
+              
+              // Check if member has ALL selected skills
+              const hasAllSkills = selected.every((skillName) =>
+                memberSkills.includes(skillName)
+              );
+              
+              if (hasAllSkills) {
+                memberEl.classList.remove("hidden");
+                memberEl.classList.add("order-first");
+              } else {
+                memberEl.classList.add("hidden");
+                memberEl.classList.add("order-last");
+              }
+            },
+          );
           
           checked[Number(el.id)] = !checked[Number(el.id)];
           if (checked[Number(el.id)]) {
