@@ -22,6 +22,17 @@ const routes = [
   },
 
 ];
+
+// Get current pathname
+const currentPath = Astro.url.pathname;
+
+// Helper function to check if a route is active
+function isActive(route: string): boolean {
+  if (route === '/') {
+    return currentPath === '/';
+  }
+  return currentPath.startsWith(route);
+}
 ---
 <header class="inset-x-0 top-0 z-50">
   <script>
@@ -47,8 +58,16 @@ const routes = [
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         {routes.map((route)=>{
+        const active = isActive(route.route);
         return (
-        <a href={route.route} class="text-sm font-semibold leading-6 text-gray-900">{route.name}</a>
+        <a 
+          href={route.route} 
+          class={`text-sm font-semibold leading-6 text-gray-900 relative pb-1 ${
+            active ? 'border-b-4 border-indigo-600' : ''
+          }`}
+        >
+          {route.name}
+        </a>
         )})}
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -75,8 +94,16 @@ const routes = [
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
         {routes.map((route)=>{
+        const active = isActive(route.route);
         return (
-              <a href={route.route} class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{route.name}</a>
+              <a 
+                href={route.route} 
+                class={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50 relative ${
+                  active ? 'border-l-4 border-indigo-600 pl-2' : ''
+                }`}
+              >
+                {route.name}
+              </a>
         )})}
             </div>
             <div class="py-6">
