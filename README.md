@@ -20,7 +20,7 @@ In order to add new members or adjust their skills or descriptions, you'll need 
 - Copy the sample env file to a real env file:
 
 ```bash
-cp .sample.env
+cp .sample.env .env
 ```
 
 - Populate the `.env` with real API keys and URLs, which you can acquire from the "all 508 members" collection on our password manager, or, ask another member.
