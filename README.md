@@ -6,9 +6,7 @@ Primarily an Astro project. Statically built at build time (server side generate
 taken from our CRM (espo). Styling done via Tailwind, with most styling taken
 from Tailwind UI (paid component library).
 
-Deployed on our coolify instance, which watches the codeberg repo for changes, and rebuilds on change.
-Future work to include triggering redeploy on changes to the CMS, for now, requires manual redeploy
-when changes occur on CRM or CMS.
+Deployed on cloudflare workers automatically on merge to main.
 
 In order to add new members or adjust their skills or descriptions, you'll need an espo account, message Caleb, Sam, or Nestor.
 
