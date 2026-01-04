@@ -35,11 +35,8 @@
     "img": "streaming.png",
     "p": [
       "A mobile streaming stealth startup needed a desktop-compatible browser streaming version of their mobile streaming application for power users.",
-
       "508.dev worked with the CEO to design a new platform, then engineered from scratch a Next.js 14 SPA that communicated with a GraphQL backend.",
-
       "Next.js 14 had just been released and the Apollo GraphQL library wasn't fully compatible, so 508.dev engineers made commits on the Apollo library to update compatibility.",
-
       "The result is a highly functional stream and chat application where power users can manage their entire streaming experience, including games and chat gifts."
     ]
   },
@@ -71,6 +68,16 @@
       "Due to a rigid NDA, there's very little we can share about this client or project. The client engages in large-volume cryptocurrency trading, and had developed Alpha they wished to have represented in an automated trading platform.",
       "508.dev organized a team of five engineers to quickly iterate on the client's algorithm, building out an automated trading platform in Python that surpassed all latency targets by a factor of 100x.",
       "508.dev also developed a fully-featured admin panel in Next.js to manage the trading platform."
+    ]
+  },
+  {
+    "title": "Government Cheese",
+    "subtitle": "Headless eCommerce Migration & Fulfillment Automation",
+    "img": "govcheese.png",
+    "p": [
+      "Architected and deployed a modern headless eCommerce solution for GovCheese, transitioning the brand from a legacy system to a robust Medusa and Next.js stack.",
+      "Empowered non-technical administrators to manage content, inventory, and the entire purchase lifecycle on-demand through a custom-configured admin dashboard.",
+      "Optimized operational efficiency by implementing automated shipment workflows, eliminating repetitive manual tasks and streamlining order fulfillment."
     ]
   }
 ]
