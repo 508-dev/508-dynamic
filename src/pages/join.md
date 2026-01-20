@@ -34,11 +34,11 @@ further.
 Regardless of your skill level, or even if you have no project experience at all
 and are just interested in becoming an engineer, we'd like to talk. Take a look
 at our [values](https://wiki.508.dev/s/values), and if they match with yours,
-send us an email at `hello@508.dev`. Or, take a look at some of our
+fill out our [intake form](https://forms.gle/ecyp49aEugS75Dhf9) . Or, take a look at some of our
 [open source projects](https://wiki.508.dev/s/foss-project-index), to see how
 you can get involved. We also have a
 [wiki article](https://wiki.508.dev/s/how-to-contribute-to-a-508-project) on the
-subject.
+subject. If you have any questions, you can email `hello@508.dev`.
 
 ## How to Join 508.dev
 
