@@ -81,19 +81,21 @@
     ]
   },
 {
-    "title": "Pinecone",
-    "subtitle": "Vector Database for AI Applications",
+    "title": "PineconeAI",
+    "subtitle": "Payment Platform for Non-Profit Organizations",
     "img": "pineconeai.png",
     "p": [
-      "Pinecone is a managed, serverless vector database designed to power AI applications with semantic search and retrieval capabilities at scale. The platform supports production deployments across RAG, semantic search, AI-powered recommendations, and intelligent agents."
+      "PineconeAI is a payment intelligence platform for non-profit organizations. It automates membership management, intelligent payment recovery, and donor recognition.",
+      "508.dev partnered with a solo founder to rapidly build and launch a production-ready MVP in just a few months, delivering a sophisticated payment platform that exceeded expectations while staying within budget."
     ]
   },
   {
     "title": "Voy Travel",
-    "subtitle": "AI-Powered Hotel Booking Platform",
-    "img": "voytravel.png",
+    "subtitle": "AI-Powered Travel Concierge",
+    "img": "",
     "p": [
-      "Voy is an AI travel assistant that streamlines hotel booking through conversational natural language interaction. Users describe their travel needs conversationally and the AI curates personalized hotel recommendations with real availability and competitive pricing from over 2 million properties worldwide."
+      "Voy is an AI travel assistant that streamlines travel booking through conversational natural language interaction. Voy curates personalized travel recommendations with real availability and competitive pricing, and the ability to pay with cryptocurrency.",
+      "We staffed the team with senior level talent to quickly put together an demo product using LangGraph, Expo, React Native, and are working in an ongoing basis to deliver an MVP."
     ]
   }
 ]
