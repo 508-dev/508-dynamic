@@ -79,5 +79,21 @@
       "Empowered non-technical administrators to manage content, inventory, and the entire purchase lifecycle on-demand through a custom-configured admin dashboard.",
       "Optimized operational efficiency by implementing automated shipment workflows, eliminating repetitive manual tasks and streamlining order fulfillment."
     ]
+  },
+{
+    "title": "Pinecone",
+    "subtitle": "Vector Database for AI Applications",
+    "img": "pineconeai.png",
+    "p": [
+      "Pinecone is a managed, serverless vector database designed to power AI applications with semantic search and retrieval capabilities at scale. The platform supports production deployments across RAG, semantic search, AI-powered recommendations, and intelligent agents."
+    ]
+  },
+  {
+    "title": "Voy Travel",
+    "subtitle": "AI-Powered Hotel Booking Platform",
+    "img": "voytravel.png",
+    "p": [
+      "Voy is an AI travel assistant that streamlines hotel booking through conversational natural language interaction. Users describe their travel needs conversationally and the AI curates personalized hotel recommendations with real availability and competitive pricing from over 2 million properties worldwide."
+    ]
   }
 ]
