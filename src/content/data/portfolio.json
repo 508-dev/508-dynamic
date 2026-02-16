@@ -1,5 +1,41 @@
 [
   {
+    "title": "VoyTravel",
+    "subtitle": "AI-Powered Hotel Booking Platform",
+    "p": [
+      "Voy is an AI travel assistant that streamlines hotel booking through conversational natural language interaction. Users describe their travel needs conversationally and the AI curates personalized hotel recommendations with real availability and competitive pricing from over 2 million properties worldwide."
+    ]
+  },
+  {
+    "title": "PineconeAI",
+    "subtitle": "Payment Platform for Non-Profit Organizations",
+    "img": "pineconeai.png",
+    "p": [
+      "PineconeAI is a payment intelligence platform for non-profit organizations. It automates membership management, intelligent payment recovery, and donor recognition.",
+      "508.dev partnered with a solo founder to rapidly build and launch a production-ready MVP in just a few months, delivering a sophisticated payment platform that exceeded expectations while staying within budget."
+    ]
+  },
+  {
+    "title": "Coverbase",
+    "subtitle": "Procurement and Third-Party Risk Platform",
+    "img": "coverbase.png",
+    "p": [
+      "Coverbase is a procurement and third-party risk platform that automates vendor diligence for modern enterprises.",
+      "We embedded frontend engineers to clear high-priority backlog tasks and accelerate delivery.",
+      "Over a six-month engagement, our team shipped meaningful product improvements across core workflows."
+    ]
+  },
+  {
+    "title": "mitig.ai",
+    "subtitle": "GRC, All in One Place",
+    "img": "mitig.png",
+    "p": [
+      "Mitig is an AI-powered unified GRC platform that transforms governance, risk, and compliance from an operational burden into a strategic advantage, all in one place.",
+      "We partnered with a solo founder and deployed 508 engineers to build an MVP in a few months, within budget.",
+      "The team now continues full-time with the company."
+    ]
+  },
+  {
     "title": "Cofactr (YC W22)",
     "subtitle": "Supercharged Hardware SaaS",
     "img": "cofactr.png",
@@ -78,24 +114,6 @@
       "Architected and deployed a modern headless eCommerce solution for GovCheese, transitioning the brand from a legacy system to a robust Medusa and Next.js stack.",
       "Empowered non-technical administrators to manage content, inventory, and the entire purchase lifecycle on-demand through a custom-configured admin dashboard.",
       "Optimized operational efficiency by implementing automated shipment workflows, eliminating repetitive manual tasks and streamlining order fulfillment."
-    ]
-  },
-{
-    "title": "PineconeAI",
-    "subtitle": "Payment Platform for Non-Profit Organizations",
-    "img": "pineconeai.png",
-    "p": [
-      "PineconeAI is a payment intelligence platform for non-profit organizations. It automates membership management, intelligent payment recovery, and donor recognition.",
-      "508.dev partnered with a solo founder to rapidly build and launch a production-ready MVP in just a few months, delivering a sophisticated payment platform that exceeded expectations while staying within budget."
-    ]
-  },
-  {
-    "title": "Voy Travel",
-    "subtitle": "AI-Powered Travel Concierge",
-    "img": "",
-    "p": [
-      "Voy is an AI travel assistant that streamlines travel booking through conversational natural language interaction. Voy curates personalized travel recommendations with real availability and competitive pricing, and the ability to pay with cryptocurrency.",
-      "We staffed the team with senior level talent to quickly put together an demo product using LangGraph, Expo, React Native, and are working in an ongoing basis to deliver an MVP."
     ]
   }
 ]
