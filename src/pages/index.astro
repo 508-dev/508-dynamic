@@ -6,7 +6,13 @@ import Principles from "../components/Principles.astro";
 import Expertise from "../components/Expertise.astro";
 import { getEntry } from 'astro:content';
 import Industries from "../components/Industries.astro";
-const homepageData = (await getEntry('data', 'homepage')).data;
+const homepageEntry = await getEntry('data', 'homepage');
+
+if (!homepageEntry) {
+  throw new Error("Missing content entry: data/homepage");
+}
+
+const homepageData = homepageEntry.data;
 
 const membersResponse = await fetch(
   `${import.meta.env.ROOT_API}/api/v1/Contact`,

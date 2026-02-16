@@ -10,7 +10,13 @@ interface PortfolioItemData {
   img: string;
 }
 
-const portfolioData = (await getEntry('data', 'portfolio')).data as PortfolioItemData[];
+const portfolioEntry = await getEntry('data', 'portfolio');
+
+if (!portfolioEntry) {
+  throw new Error("Missing content entry: data/portfolio");
+}
+
+const portfolioData = portfolioEntry.data as PortfolioItemData[];
 ---
 
 <Layout title="508.dev Portfolio" data-theme="light">

@@ -1,7 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
-const pricingData = (await getEntry('data', 'pricing')).data;
+const pricingEntry = await getEntry('data', 'pricing');
+
+if (!pricingEntry) {
+  throw new Error("Missing content entry: data/pricing");
+}
+
+const pricingData = pricingEntry.data;
 
 interface PricingFact {
   title: string;
