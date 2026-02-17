@@ -12,7 +12,7 @@
     "eslint": "eslint src/ --fix"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.6",
     "@astrojs/tailwind": "^6.0.2",
     "astro": "^5.17.2",
     "tailwindcss": "^3.4.3",
