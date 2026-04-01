@@ -25,16 +25,62 @@ const fields = [
   },
 ];
 
-const membersResponse = await fetch(
-  `${import.meta.env.ROOT_API}/api/v1/Contact`,
-  {
-    headers: {
-      "X-api-key": import.meta.env.ESPO_API_KEY,
-    },
-  },
-);
+const rootApi = process.env.ROOT_API ?? import.meta.env.ROOT_API;
+const espoApiKey = process.env.ESPO_API_KEY ?? import.meta.env.ESPO_API_KEY;
 
-const members = (await membersResponse.json()) as { list: MemberType[] };
+if (!rootApi || !espoApiKey) {
+  throw new Error("Missing ROOT_API or ESPO_API_KEY for members page build");
+}
+
+const membersUrl = `${rootApi.replace(/\/$/, "")}/api/v1/Contact`;
+
+async function fetchMembers(): Promise<{ list: MemberType[] }> {
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    const membersResponse = await fetch(membersUrl, {
+      headers: {
+        Accept: "application/json",
+        "X-api-key": espoApiKey,
+      },
+    });
+    const responseText = await membersResponse.text();
+
+    if (!membersResponse.ok) {
+      throw new Error(
+        `Failed to load members: ${membersResponse.status} ${membersResponse.statusText}`,
+      );
+    }
+
+    try {
+      return JSON.parse(responseText) as { list: MemberType[] };
+    } catch (error) {
+      if (attempt === 3) {
+        const contentType = membersResponse.headers.get("content-type");
+        const preview = responseText.slice(0, 120);
+        throw new Error(
+          `Failed to parse members response as JSON after 3 attempts. Content-Type: ${contentType ?? "unknown"}. Preview: ${preview}`,
+          { cause: error },
+        );
+      }
+      await new Promise((resolve) => setTimeout(resolve, attempt * 250));
+    }
+  }
+
+  throw new Error("Failed to load members");
+}
+
+const membersData = await fetchMembers();
+const members: { list: MemberType[] } = {
+  list: membersData.list.map((member) => ({
+    ...member,
+    publicLink:
+      member.publicLink ??
+      member.cWebsiteLink?.[0] ??
+      member.cLinkedIn ??
+      undefined,
+    publicDescription: member.publicDescription ?? member.description,
+  })),
+};
+
 members.list.sort((a: MemberType, b: MemberType) => {
   if (a.publicPhotoId && !b.publicPhotoId) {
     return -1;
