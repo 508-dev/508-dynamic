@@ -1,13 +1,14 @@
 import { defineConfig } from "astro/config";
-
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://508.dev",
   trailingSlash: "never",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   build: {
     format: "file",
   },
-  integrations: [tailwind()],
 });
