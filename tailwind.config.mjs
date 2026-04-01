@@ -1,3 +1,7 @@
+import daisyui from "daisyui";
+import typography from "@tailwindcss/typography";
+import bgPatterns from "tailwindcss-bg-patterns";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
@@ -27,9 +31,9 @@ export default {
     },
   },
   plugins: [
-    require("daisyui"),
-    require("tailwindcss-bg-patterns"),
-    require("@tailwindcss/typography"),
+    daisyui,
+    bgPatterns,
+    typography,
   ],
   daisyui: {
     themes: ["light"],
