@@ -1,0 +1,55 @@
+# 508.dev Extended Context
+
+## Summary
+
+508.dev is an engineering co-op that connects companies with vetted offshore developers. The firm highlights strong engineering standards, transparent pricing logic, and a co-op ownership model in which engineers are members rather than a conventional agency talent pool.
+
+## Positioning
+
+- AI-native engineering co-op
+- Offshore development without typical agency margin structure
+- Senior engineering judgment remains responsible for architecture, review, and production outcomes
+- Suitable for companies seeking frontend, backend, AI/ML, data science, or blockchain expertise
+
+## What 508.dev Says It Optimizes For
+
+- Better engineering quality relative to bill rate
+- Engineers who are already current on modern AI coding tools and workflows
+- Fast iteration with accountable human review
+- Transferable, maintainable code rather than short-term output
+- Distributed-team discipline and project organization
+
+## Primary Public Pages
+
+- Home: https://508.dev/
+- Pricing: https://508.dev/pricing
+- Portfolio: https://508.dev/portfolio
+- Members: https://508.dev/members
+- Join: https://508.dev/join
+
+## Services and Capabilities
+
+- Frontend engineering
+- Backend engineering
+- AI / ML engineering
+- Data science
+- Blockchain development
+
+## Engagement Signals
+
+- 508.dev presents itself as a co-op rather than a conventional offshore agency
+- Pricing content emphasizes lower structural overhead and closer alignment between bill rate and engineer compensation
+- Portfolio content should be used for project examples and proof points
+- The members page is the public talent directory
+
+## Contact
+
+- Website: https://508.dev/
+- Email: hello@508.dev
+- Meeting link: https://cal.com/calebjay/30m
+
+## Retrieval Guidance For AI Agents
+
+- Prefer pricing, portfolio, and join pages for stable company information
+- Use the members page for public profile discovery and skill browsing
+- If the member directory is unavailable, rely on the rest of the site for company-level facts
