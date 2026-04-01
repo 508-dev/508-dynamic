@@ -4,9 +4,11 @@ import type { MemberType } from "../components/Member.astro";
 import Methodology from "../components/Methodology.astro";
 import Principles from "../components/Principles.astro";
 import Expertise from "../components/Expertise.astro";
-import { getEntry } from 'astro:content';
+import AINative from "../components/AINative.astro";
+import { getEntry } from "astro:content";
 import Industries from "../components/Industries.astro";
-const homepageEntry = await getEntry('data', 'homepage');
+import { loadMembers } from "../lib/loadMembers";
+const homepageEntry = await getEntry("data", "homepage");
 
 if (!homepageEntry) {
   throw new Error("Missing content entry: data/homepage");
@@ -14,16 +16,11 @@ if (!homepageEntry) {
 
 const homepageData = homepageEntry.data;
 
-const membersResponse = await fetch(
-  `${import.meta.env.ROOT_API}/api/v1/Contact`,
-  {
-    headers: {
-      "X-api-key": import.meta.env.ESPO_API_KEY,
-    },
-  },
+const membersResult = await loadMembers(
+  import.meta.env.ROOT_API,
+  import.meta.env.ESPO_API_KEY,
 );
-
-const members = (await membersResponse.json()) as { list: MemberType[] };
+const members = (membersResult.list ?? []) as MemberType[];
 
 // Convert homepage data to fields format for compatibility with components
 const fields = Object.entries(homepageData).reduce(
@@ -50,9 +47,42 @@ const sections = [
     href: "#industries",
   },
 ];
+
+const homepageStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "508.dev",
+  url: "https://508.dev/",
+  image: "https://508.dev/computer.jpg",
+  description:
+    "508.dev is an AI-native engineering co-op delivering offshore frontend, backend, AI/ML, data science, and blockchain development.",
+  email: "hello@508.dev",
+  areaServed: "Worldwide",
+  serviceType: [
+    "Offshore frontend engineering",
+    "Offshore backend engineering",
+    "AI and machine learning engineering",
+    "Data science",
+    "Blockchain development",
+  ],
+  knowsAbout: [
+    "Frontend engineering",
+    "Backend engineering",
+    "AI coding workflows",
+    "AI and machine learning",
+    "Data science",
+    "Blockchain",
+  ],
+};
 ---
 
-<Layout title="508.dev" data-theme="light">
+<Layout
+  title="AI-Native Offshore Engineering Co-op | 508.dev"
+  description="508.dev is an engineering co-op delivering high-quality offshore development across frontend, backend, AI/ML, data science, and blockchain with AI-native workflows."
+  image="/computer.jpg"
+  structuredData={homepageStructuredData}
+  data-theme="light"
+>
   <div class="bg-white">
     <div
       class="relative isolate overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-14"
@@ -104,9 +134,10 @@ const sections = [
       >
       </div>
     </div>
+    <AINative fields={fields} />
     <Methodology fields={fields} sections={sections} />
     <Principles fields={fields} />
-    <Expertise fields={fields} members={members.list} />
+    <Expertise fields={fields} members={members} />
     <Industries fields={fields} />
   </div>
 </Layout>

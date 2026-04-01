@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Member from "../components/Member.astro";
 import type { MemberType } from "../components/Member.astro";
+import { loadMembers } from "../lib/loadMembers";
 const fields = [
   {
     src: "frontend",
@@ -25,63 +26,24 @@ const fields = [
   },
 ];
 
-const rootApi = process.env.ROOT_API ?? import.meta.env.ROOT_API;
-const espoApiKey = process.env.ESPO_API_KEY ?? import.meta.env.ESPO_API_KEY;
-
-if (!rootApi || !espoApiKey) {
-  throw new Error("Missing ROOT_API or ESPO_API_KEY for members page build");
-}
-
-const membersUrl = `${rootApi.replace(/\/$/, "")}/api/v1/Contact`;
-
-async function fetchMembers(): Promise<{ list: MemberType[] }> {
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
-    const membersResponse = await fetch(membersUrl, {
-      headers: {
-        Accept: "application/json",
-        "X-api-key": espoApiKey,
-      },
-    });
-    const responseText = await membersResponse.text();
-
-    if (!membersResponse.ok) {
-      throw new Error(
-        `Failed to load members: ${membersResponse.status} ${membersResponse.statusText}`,
-      );
-    }
-
-    try {
-      return JSON.parse(responseText) as { list: MemberType[] };
-    } catch (error) {
-      if (attempt === 3) {
-        const contentType = membersResponse.headers.get("content-type");
-        const preview = responseText.slice(0, 120);
-        throw new Error(
-          `Failed to parse members response as JSON after 3 attempts. Content-Type: ${contentType ?? "unknown"}. Preview: ${preview}`,
-          { cause: error },
-        );
-      }
-      await new Promise((resolve) => setTimeout(resolve, attempt * 250));
-    }
+const serverEnv = (
+  globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined> };
   }
+).process?.env;
 
-  throw new Error("Failed to load members");
-}
+const membersResult = await loadMembers(
+  serverEnv?.ROOT_API ?? import.meta.env.ROOT_API,
+  serverEnv?.ESPO_API_KEY ?? import.meta.env.ESPO_API_KEY,
+);
+const members = ((membersResult.list ?? []) as MemberType[]).map((member) => ({
+  ...member,
+  publicLink:
+    member.publicLink ?? member.cWebsiteLink?.[0] ?? member.cLinkedIn ?? undefined,
+  publicDescription: member.publicDescription ?? member.description,
+}));
 
-const membersData = await fetchMembers();
-const members: { list: MemberType[] } = {
-  list: membersData.list.map((member) => ({
-    ...member,
-    publicLink:
-      member.publicLink ??
-      member.cWebsiteLink?.[0] ??
-      member.cLinkedIn ??
-      undefined,
-    publicDescription: member.publicDescription ?? member.description,
-  })),
-};
-
-members.list.sort((a: MemberType, b: MemberType) => {
+members.sort((a: MemberType, b: MemberType) => {
   if (a.publicPhotoId && !b.publicPhotoId) {
     return -1;
   } else if (b.publicPhotoId && !a.publicPhotoId) {
@@ -96,7 +58,12 @@ members.list.sort((a: MemberType, b: MemberType) => {
 });
 ---
 
-<Layout title="508.dev Members">
+<Layout
+  title="Engineering Talent Directory | 508.dev"
+  description="Browse vetted 508.dev engineers across frontend, backend, AI/ML, data science, and blockchain specialties."
+  image="/office.jpg"
+  data-theme="light"
+>
   <div class="relative isolate bg-white px-6 pt-12 sm:pt-16 pb-24 sm:pb-32 lg:px-8">
     <div
       class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl"
@@ -329,13 +296,22 @@ members.list.sort((a: MemberType, b: MemberType) => {
           </button>
         </div>
 
+        {
+          !membersResult.loaded && (
+            <div class="mt-10 rounded-2xl border border-amber-200 bg-amber-50 px-6 py-4 text-sm text-amber-900">
+              Member profiles are temporarily unavailable. Core company information is
+              still available on the pricing, portfolio, and join pages.
+            </div>
+          )
+        }
+
         <ul
           id="member-list"
           role="list"
           class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:max-w-4xl lg:gap-x-8 xl:max-w-none"
         >
           {
-            members.list
+            members
               .filter((member) => {
                 return member.type === "Candidate / Member" || member.type === "Member";
               })
