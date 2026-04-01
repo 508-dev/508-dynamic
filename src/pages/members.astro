@@ -36,11 +36,43 @@ const membersResult = await loadMembers(
   serverEnv?.ROOT_API ?? import.meta.env.ROOT_API,
   serverEnv?.ESPO_API_KEY ?? import.meta.env.ESPO_API_KEY,
 );
+
+function trimToUndefined(value: string | null | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+function pickSafePublicLink(
+  ...candidates: Array<string | null | undefined>
+): string | undefined {
+  for (const candidate of candidates) {
+    const value = trimToUndefined(candidate);
+    if (!value) {
+      continue;
+    }
+
+    try {
+      const url = new URL(value);
+      if (url.protocol === "http:" || url.protocol === "https:") {
+        return url.toString();
+      }
+    } catch {
+      // Ignore invalid URLs and continue to the next candidate.
+    }
+  }
+
+  return undefined;
+}
+
 const members = ((membersResult.list ?? []) as MemberType[]).map((member) => ({
   ...member,
-  publicLink:
-    member.publicLink ?? member.cWebsiteLink?.[0] ?? member.cLinkedIn ?? undefined,
-  publicDescription: member.publicDescription ?? member.description,
+  publicLink: pickSafePublicLink(
+    member.publicLink,
+    ...(member.cWebsiteLink ?? []),
+    member.cLinkedIn,
+  ),
+  publicDescription:
+    trimToUndefined(member.publicDescription) ?? trimToUndefined(member.description),
 }));
 
 members.sort((a: MemberType, b: MemberType) => {
