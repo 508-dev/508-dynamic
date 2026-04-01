@@ -28,9 +28,11 @@ export async function loadMembers(
 
     const data = (await response.json()) as MembersApiResponse;
 
+    const list = Array.isArray(data.list) ? data.list : [];
+
     return {
-      list: Array.isArray(data.list) ? data.list : [],
-      loaded: true,
+      list,
+      loaded: Array.isArray(data.list),
     };
   } catch {
     return { list: [], loaded: false };

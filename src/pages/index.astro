@@ -20,7 +20,7 @@ const membersResult = await loadMembers(
   import.meta.env.ROOT_API,
   import.meta.env.ESPO_API_KEY,
 );
-const members = membersResult.list as MemberType[];
+const members = (membersResult.list ?? []) as MemberType[];
 
 // Convert homepage data to fields format for compatibility with components
 const fields = Object.entries(homepageData).reduce(

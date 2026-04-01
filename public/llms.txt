@@ -8,7 +8,7 @@
 
 - [Home](https://508.dev/) - Company overview, positioning, and service summary.
 - [Pricing](https://508.dev/pricing) - Pricing model and engagement framing.
-- [Portfolio](https://508.dev/portfolio) - Project examples and case-study style summaries.
+- [Portfolio](https://508.dev/portfolio) - Project examples and case-study-style summaries.
 - [Members](https://508.dev/members) - Public directory of engineers and skills.
 - [Join](https://508.dev/join) - Membership and contribution process.
 - [Extended LLM Context](https://508.dev/llms-full.txt) - Expanded machine-readable summary for AI agents.
