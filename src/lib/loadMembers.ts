@@ -10,8 +10,10 @@ interface LoadedMember {
   type: string;
   publicPhotoId?: string;
   publicPhotoName?: string;
-  publicDescription?: string;
+  publicDescription?: string | null;
   publicLink?: string;
+  cWebsiteLink?: string[] | null;
+  cLinkedIn?: string | null;
   cPublicJobTitle?: string;
 }
 
@@ -63,8 +65,10 @@ function toLoadedMember(value: unknown): LoadedMember | null {
     description: getOptionalNullableString(value.description),
     publicPhotoId: getOptionalString(value.publicPhotoId),
     publicPhotoName: getOptionalString(value.publicPhotoName),
-    publicDescription: getOptionalString(value.publicDescription),
+    publicDescription: getOptionalNullableString(value.publicDescription),
     publicLink: getOptionalString(value.publicLink),
+    cWebsiteLink: getStringArray(value.cWebsiteLink),
+    cLinkedIn: getOptionalNullableString(value.cLinkedIn),
     cPublicJobTitle: getOptionalString(value.cPublicJobTitle),
   };
 }

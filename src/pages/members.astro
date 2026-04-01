@@ -26,11 +26,54 @@ const fields = [
   },
 ];
 
+const serverEnv = (
+  globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined> };
+  }
+).process?.env;
+
 const membersResult = await loadMembers(
-  import.meta.env.ROOT_API,
-  import.meta.env.ESPO_API_KEY,
+  serverEnv?.ROOT_API ?? import.meta.env.ROOT_API,
+  serverEnv?.ESPO_API_KEY ?? import.meta.env.ESPO_API_KEY,
 );
-const members = (membersResult.list ?? []) as MemberType[];
+
+function trimToUndefined(value: string | null | undefined): string | undefined {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : undefined;
+}
+
+function pickSafePublicLink(
+  ...candidates: Array<string | null | undefined>
+): string | undefined {
+  for (const candidate of candidates) {
+    const value = trimToUndefined(candidate);
+    if (!value) {
+      continue;
+    }
+
+    try {
+      const url = new URL(value);
+      if (url.protocol === "http:" || url.protocol === "https:") {
+        return url.toString();
+      }
+    } catch {
+      // Ignore invalid URLs and continue to the next candidate.
+    }
+  }
+
+  return undefined;
+}
+
+const members = ((membersResult.list ?? []) as MemberType[]).map((member) => ({
+  ...member,
+  publicLink: pickSafePublicLink(
+    member.publicLink,
+    ...(member.cWebsiteLink ?? []),
+    member.cLinkedIn,
+  ),
+  publicDescription:
+    trimToUndefined(member.publicDescription) ?? trimToUndefined(member.description),
+}));
 
 members.sort((a: MemberType, b: MemberType) => {
   if (a.publicPhotoId && !b.publicPhotoId) {
