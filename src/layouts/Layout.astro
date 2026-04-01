@@ -1,38 +1,100 @@
 ---
 import Header from '../components/Header.astro';
 interface Props {
-	  title: string;
-	  'data-theme'?: string;
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  'data-theme'?: string;
 }
 
-const { title, 'data-theme': dataTheme } = Astro.props;
+const {
+  title,
+  description = "508.dev is an engineering co-op connecting qualified offshore developers with companies that need high-quality frontend, backend, AI, data, and blockchain expertise.",
+  image = "/computer.jpg",
+  noindex = false,
+  structuredData,
+  'data-theme': dataTheme,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://508.dev");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const imageUrl = new URL(image, siteUrl).toString();
+const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
+
+const defaultStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "508.dev",
+    url: siteUrl.toString(),
+    logo: new URL("/508logo.png", siteUrl).toString(),
+    email: "hello@508.dev",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "508.dev",
+    url: siteUrl.toString(),
+  },
+];
+
+const pageStructuredData = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
+
+const structuredDataItems = [...defaultStructuredData, ...pageStructuredData];
 ---
 
 <!doctype html>
 <html lang="en" data-theme={dataTheme}>
-	  <head>
-		    <meta charset="UTF-8" />
-		    <meta name="description" content="Engineering co-op connecting qualified offshore engineers with companies that match their expertise." />
-		    <meta name="viewport" content="width=device-width" />
-		    <meta name="generator" content={Astro.generator} />
-        <meta property="og:title" content="508.dev">
-        <meta property="og:description" content="Engineering co-op connecting qualified offshore engineers with companies that match their expertise.">
-        <meta property="og:url" content="https://508.dev/508logo.png">
-        <meta property="og:image" content="https://508.dev/rock.jpg" />
-        <meta name="twitter:card" content="summary">
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-        <link rel="manifest" href="/site.webmanifest">
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-        <meta name="msapplication-TileColor" content="#da532c">
-        <meta name="theme-color" content="#ffffff">
-		    <title>{title}</title>
-	  </head>
-	  <body>
-      <Header />
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content={robotsContent} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:site_name" content="508.dev" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={title} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{title}</title>
+
+    {
+      structuredDataItems.map((item) => (
+        <script
+          is:inline
+          type="application/ld+json"
+          set:html={JSON.stringify(item)}
+        />
+      ))
+    }
+  </head>
+  <body>
+    <Header />
+    <slot />
+  </body>
   <script is:inline data-goatcounter="https://508.goatcounter.com/count"
           async src="//gc.zgo.at/count.js"></script>
 </html>
