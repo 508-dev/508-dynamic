@@ -7,8 +7,10 @@ export interface MemberType {
   type: string;
   publicPhotoId?: string;
   publicPhotoName?: string;
-  publicDescription?: string;
+  publicDescription?: string | null;
   publicLink?: string;
+  cWebsiteLink?: string[] | null;
+  cLinkedIn?: string | null;
   cPublicJobTitle?: string;
 }
 interface Props extends MemberType {
