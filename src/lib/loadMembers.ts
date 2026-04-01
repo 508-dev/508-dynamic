@@ -2,9 +2,71 @@ interface MembersApiResponse {
   list?: unknown[];
 }
 
+interface LoadedMember {
+  id: string;
+  name: string;
+  description?: string | null;
+  skills: string[];
+  type: string;
+  publicPhotoId?: string;
+  publicPhotoName?: string;
+  publicDescription?: string;
+  publicLink?: string;
+  cPublicJobTitle?: string;
+}
+
 interface LoadMembersResult {
-  list: unknown[];
+  list: LoadedMember[];
   loaded: boolean;
+}
+
+const MEMBERS_FETCH_TIMEOUT_MS = 5000;
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null;
+}
+
+function getOptionalString(value: unknown): string | undefined {
+  return typeof value === "string" ? value : undefined;
+}
+
+function getOptionalNullableString(value: unknown): string | null | undefined {
+  return value === null || typeof value === "string" ? value : undefined;
+}
+
+function getStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.filter((item): item is string => typeof item === "string");
+}
+
+function toLoadedMember(value: unknown): LoadedMember | null {
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  const id = getOptionalString(value.id);
+  const name = getOptionalString(value.name);
+  const type = getOptionalString(value.type);
+
+  if (!id || !name || !type) {
+    return null;
+  }
+
+  return {
+    id,
+    name,
+    type,
+    skills: getStringArray(value.skills),
+    description: getOptionalNullableString(value.description),
+    publicPhotoId: getOptionalString(value.publicPhotoId),
+    publicPhotoName: getOptionalString(value.publicPhotoName),
+    publicDescription: getOptionalString(value.publicDescription),
+    publicLink: getOptionalString(value.publicLink),
+    cPublicJobTitle: getOptionalString(value.cPublicJobTitle),
+  };
 }
 
 export async function loadMembers(
@@ -16,24 +78,41 @@ export async function loadMembers(
   }
 
   try {
-    const response = await fetch(new URL("/api/v1/Contact", rootApi), {
-      headers: {
-        "X-api-key": apiKey,
-      },
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(
+      () => controller.abort(),
+      MEMBERS_FETCH_TIMEOUT_MS,
+    );
 
-    if (!response.ok) {
-      return { list: [], loaded: false };
+    try {
+      const response = await fetch(new URL("/api/v1/Contact", rootApi), {
+        headers: {
+          "X-api-key": apiKey,
+        },
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        return { list: [], loaded: false };
+      }
+
+      const data = (await response.json()) as MembersApiResponse;
+
+      if (!Array.isArray(data.list)) {
+        return { list: [], loaded: false };
+      }
+
+      const list = data.list
+        .map((item) => toLoadedMember(item))
+        .filter((item): item is LoadedMember => item !== null);
+
+      return {
+        list,
+        loaded: data.list.length === 0 || list.length > 0,
+      };
+    } finally {
+      clearTimeout(timeoutId);
     }
-
-    const data = (await response.json()) as MembersApiResponse;
-
-    const list = Array.isArray(data.list) ? data.list : [];
-
-    return {
-      list,
-      loaded: Array.isArray(data.list),
-    };
   } catch {
     return { list: [], loaded: false };
   }
