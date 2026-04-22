@@ -2,6 +2,7 @@
   "name": "508-dynamic",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "bun@1.3.12",
   "engines": {
     "node": ">=22.12.0"
   },
