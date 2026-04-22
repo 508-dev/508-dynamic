@@ -77,7 +77,7 @@ function isActive(route?: string): boolean {
         el.classList.toggle("hidden"),
       );
     }
-    [...document.getElementsByTagName("button")].forEach((el) =>
+    [...document.querySelectorAll("[data-toggle-sidebar]")].forEach((el) =>
       el.addEventListener("click", toggleSidebar),
     );
   </script>
@@ -95,6 +95,7 @@ function isActive(route?: string): boolean {
       <button
         type="button"
         class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+        data-toggle-sidebar
       >
         <span class="sr-only">Open main menu</span>
         <svg
@@ -187,7 +188,7 @@ function isActive(route?: string): boolean {
           <span class="sr-only">508.dev</span>
           <img class="h-8 w-auto" src="/508logo.png" alt="508 logo" />
         </a>
-        <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700">
+        <button type="button" class="-m-2.5 rounded-md p-2.5 text-gray-700" data-toggle-sidebar>
           <span class="sr-only">Close menu</span>
           <svg
             class="h-6 w-6"
