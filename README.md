@@ -35,8 +35,9 @@ npm run dev
 ```
 
 The Astro dev server now uses a deterministic worktree-specific port. By default,
-it hashes the repo path into the `4321-5320` range so separate worktrees stop
-colliding with each other. You can override that locally with
+it hashes the repo path into the `4321-5320` range so separate worktrees usually
+avoid sharing the default port. Different worktrees can still collide because the
+range is finite. If that happens, override it locally with
 `WORKTREE_DEV_PORT`, `PORT`, `WORKTREE_DEV_BASE_PORT`,
 `WORKTREE_DEV_PORT_SPAN`, `WORKTREE_DEV_PORT_OFFSET`, or
 `WORKTREE_DEV_ROOT`.
