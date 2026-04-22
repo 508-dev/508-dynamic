@@ -21,14 +21,14 @@ We don't just build pipelines; we build data ecosystems that are fast, secure, c
 Break down data silos and bring everything under one roof.
 
 * **Efficient Gathering:** We seamlessly connect your central platform to any data producer, whether it's real-time IoT devices, transactional databases (OLTP), or third-party systems, ensuring standardized, reliable data flow.
-* **Automated Data Pipelines:** Whether you need up-to-the-second streaming data or scheduled batch processing, we implement scalable ingestion frameworks seamlessly pull, push, and format your data so it’s always ready when you need it.
+* **Automated Data Pipelines:** Whether you need up-to-the-second streaming data or scheduled batch processing, we implement scalable ingestion frameworks that seamlessly pull, push, and format your data so it’s always ready when you need it.
 
 ### 🧠 Intelligent Processing & Orchestration
 
 The "center of gravity" that turns raw information into business value.
 
 * **Smart Storage & Architecture:** We implement modern storage solutions (Data Lakes, Warehouses, and Lakehouses) tailored to your needs. We manage "data temperature" (hot, warm, cold) to ensure frequently used data is instantly accessible, while older data is archived cost-effectively.
-* **Flawless Orchestration & Transformation:** We coordinate complex workflows to ensure your data pipelines are highly available and reliable. Using advanced data wrangling and normalization, applying your specific business logic so the data speaks your company's language.
+* **Flawless Orchestration & Transformation:** We coordinate complex workflows to ensure your data pipelines are highly available and reliable, using advanced data wrangling and normalization and applying your specific business logic so the data speaks your company's language.
 
 ### 🚀 Actionable Insights Delivery
 
