@@ -34,6 +34,13 @@ npm install
 npm run dev
 ```
 
+The Astro dev server now uses a deterministic worktree-specific port. By default,
+it hashes the repo path into the `4321-5320` range so separate worktrees stop
+colliding with each other. You can override that locally with
+`WORKTREE_DEV_PORT`, `PORT`, `WORKTREE_DEV_BASE_PORT`,
+`WORKTREE_DEV_PORT_SPAN`, `WORKTREE_DEV_PORT_OFFSET`, or
+`WORKTREE_DEV_ROOT`.
+
 - Before making a commit, run prettier
 
 ```bash
@@ -85,11 +92,11 @@ Any static assets, like images, can be placed in the `public/` directory.
 
 All commands are run from the root of the project, from a terminal:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| Command                   | Action                                              |
+| :------------------------ | :-------------------------------------------------- |
+| `npm install`             | Installs dependencies                               |
+| `npm run dev`             | Starts local dev server on a worktree-specific port |
+| `npm run build`           | Build your production site to `./dist/`             |
+| `npm run preview`         | Preview your build locally, before deploying        |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check`    |
+| `npm run astro -- --help` | Get help using the Astro CLI                        |
