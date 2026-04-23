@@ -14,7 +14,7 @@ In order to add new members or adjust their skills or descriptions, you'll need 
 
 ### Setup
 
-- You must have node vs >= 16. Recommend NVM for node version management.
+- You must have Bun >= 1.3.12 installed locally.
 - Copy the sample env file to a real env file:
 
 ```bash
@@ -22,16 +22,16 @@ cp .sample.env .env
 ```
 
 - Populate the `.env` with real API keys and URLs, which you can acquire from the "all 508 members" collection on our password manager, or, ask another member.
-- Install NPM packages
+- Install dependencies
 
 ```bash
-npm install
+bun install
 ```
 
 - Start the dev server
 
 ```bash
-npm run dev
+bun run dev
 ```
 
 The Astro dev server now uses a deterministic worktree-specific port. By default,
@@ -45,13 +45,13 @@ range is finite. If that happens, override it locally with
 - Before making a commit, run prettier
 
 ```bash
-npm run prettier
+bun run prettier
 ```
 
 - Also, run typescript checks
 
 ```bash
-npm run astro check
+bun run astro check
 ```
 
 ### Deployment
@@ -60,7 +60,8 @@ Deployment automatically occurs on merge to main. Our coolify instance pulls the
 changes, then builds the project:
 
 ```bash
-npm run build
+bun install --frozen-lockfile
+bun run build
 ```
 
 It then statically servers the contents of `./dist` .
@@ -95,9 +96,9 @@ All commands are run from the root of the project, from a terminal:
 
 | Command                   | Action                                              |
 | :------------------------ | :-------------------------------------------------- |
-| `npm install`             | Installs dependencies                               |
-| `npm run dev`             | Starts local dev server on a worktree-specific port |
-| `npm run build`           | Build your production site to `./dist/`             |
-| `npm run preview`         | Preview your build locally, before deploying        |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check`    |
-| `npm run astro -- --help` | Get help using the Astro CLI                        |
+| `bun install`             | Installs dependencies                               |
+| `bun run dev`             | Starts local dev server on a worktree-specific port |
+| `bun run build`           | Build your production site to `./dist/`             |
+| `bun run preview`         | Preview your build locally, before deploying        |
+| `bun run astro ...`       | Run CLI commands like `astro add`, `astro check`    |
+| `bun run astro -- --help` | Get help using the Astro CLI                        |
