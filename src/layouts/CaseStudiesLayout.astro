@@ -1,0 +1,40 @@
+---
+import Layout from "./Layout.astro";
+
+// @ts-ignore
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.description}
+  image="/office.jpg"
+  data-theme="light"
+>
+  <div class="relative isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+      <h2 class="text-base font-semibold leading-7 text-indigo-600">
+        {frontmatter.headingSmall || "Proven Success"}
+      </h2>
+      <p
+        class="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+      >
+        {frontmatter.heading || "Case Studies"}
+      </p>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600">
+        {
+          frontmatter.headingSummary ||
+            "Real-world results delivered by our specialized engineering teams."
+        }
+      </p>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-7xl lg:mt-24">
+      <div
+        class="prose prose-xl prose-stone max-w-none prose-h2:scroll-mt-24 prose-h2:border-b prose-h2:border-gray-200 prose-h2:pb-5 prose-h2:text-3xl prose-h2:font-bold prose-h2:text-gray-900 prose-h3:text-xl prose-h3:font-bold prose-h3:text-gray-900 prose-h4:text-indigo-600 prose-h4:font-bold prose-h4:mb-2 prose-h4:mt-4"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</Layout>
