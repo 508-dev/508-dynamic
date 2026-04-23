@@ -41,5 +41,5 @@ Move fast, test safely, and give the market exactly what it wants.
 
 Because your brand’s reputation depends on reliability.
 
-* **Automated, Flawless Quality:** We build confidence into every release. Through end-to-end (E2E) testing, visual regression tracking, and cross-browser automation within our CI/CD pipelines where we catch issues long before your users ever could.
+* **Automated, Flawless Quality:** We build confidence into every release through end-to-end (E2E) testing, visual regression tracking, and cross-browser automation within our CI/CD pipelines, catching issues long before your users ever could.
 * **Proactive Support & Remediation:** When the unexpected happens, we’re already on it. We monitor application health from the user's perspective, rapidly triaging, debugging, and patching user-facing issues to guarantee high customer satisfaction and minimal friction.
