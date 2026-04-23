@@ -3,7 +3,7 @@ layout: ../../layouts/ExpertiseLayout.astro
 title: "Data Engineering | 508.dev"
 headingSmall: "Data Engineering"
 heading: "Unleash the True Power of Your Data."
-headingSummary: "Data is your most valuable asset, but only if you can trust it, understand it, and act on it. We build robust, scalable Data Platforms that transform raw, chaotic data into a single source of truth, fueling smarter business decisions, empowering AI, and rapid growth."
+headingSummary: "Data is your most valuable asset, but only if you can trust it, understand it, and act on it. We build robust, scalable Data Platforms that transform raw, chaotic data into a single source of truth, fueling smarter business decisions, empowering AI, and driving rapid growth."
 ---
 
 ## From Information to Innovation
