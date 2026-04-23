@@ -39,7 +39,7 @@ Balance the speed of innovation with the promise of stability.
 
 Observability isn't just for IT anymore.
 
-* **Democratized Dashboards:** We break down the walls between engineering and the rest of the business. We build self-serve portals that give the Product, Support and Sales teams, as well as other key stakeholders real-time visibility into customer friction points, feature adoption rates, and overall user experience.
+* **Democratized Dashboards:** We break down the walls between engineering and the rest of the business. We build self-serve portals that provide the Product, Support, and Sales teams, as well as other key stakeholders, with real-time visibility into customer friction points, feature adoption rates, and overall user experience.
 
 ### 💡 Smart Cost Control (FinOps)
 
