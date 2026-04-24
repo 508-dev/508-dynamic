@@ -156,7 +156,9 @@ function isActive(route?: string): boolean {
                           <div class="flex-auto">
                             <a
                               href={item.route}
-                              class="block font-semibold text-gray-900"
+                              class={`block font-semibold text-gray-900 ${
+                                isActive(item.route) ? "border-b-4 border-indigo-600" : ""
+                              }`}
                             >
                               {item.name}
                               <span class="absolute inset-0" />
@@ -248,7 +250,9 @@ function isActive(route?: string): boolean {
                         {route.subItems.map((item) => (
                           <a
                             href={item.route}
-                            class="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                            class={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                              isActive(item.route) ? "border-l-4 border-indigo-600 pl-2" : ""
+                            }`}
                           >
                             {item.name}
                           </a>
