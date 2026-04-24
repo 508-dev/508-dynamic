@@ -63,7 +63,7 @@ We implemented a company-wide observability framework from the ground up. This i
 
 * **System Reliability:** System performing well in Service Level Agreements (SLAs).
 * **Immediate ROI:** Saved an estimated $5,000 in the first few weeks by preventing lost ad revenue.
-* **Cultural Shift:** Empowered teams to transition from reactive fixing to data-driven, proactive development, significantly increasing developer morale and well earned sleep at night.
+* **Cultural Shift:** Empowered teams to transition from reactive fixing to data-driven, proactive development, significantly increasing developer morale and well-earned sleep at night.
 
 
 
