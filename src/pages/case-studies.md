@@ -105,7 +105,7 @@ By treating the internal platform as a product, we provided the foundation for t
 
 We established a formal Platform Engineering Charter and built the following core capabilities:
 
-* **Golden Path Templates & Documentation:** We created standardized, templated compositions of well-integrated code. These "Golden Paths" allowed developers to bootstrap new services with security, observability, and infrastructure-as-code (IaC) already "baked in”.
+* **Golden Path Templates & Documentation:** We created standardized, templated compositions of well-integrated code. These "Golden Paths" allowed developers to bootstrap new services with security, observability, and infrastructure-as-code (IaC) already "baked in".
 * **Self-Service Infrastructure & Provisioning:** We moved away from manual tickets by creating APIs for automatically provisioning environments and infrastructure services. Developers could now spin up research, development, and production-grade environments on demand.
 * **Automated Delivery (CI/CD) & Artifact Management:** We built a unified automation framework for building, testing, and delivering digital products.
 * **Security & Observability Infrastructure:** We integrated automated security scanning into the platform to report and remediate vulnerabilities before they reached production. Simultaneously, we provided the infrastructure for unified telemetry, allowing teams to instrument applications and monitor performance through self-serve dashboards and alerting.
@@ -116,7 +116,7 @@ We established a formal Platform Engineering Charter and built the following cor
 * **Velocity & Autonomy:** Tasks that previously took months were reduced to minutes. By providing self-service tools, we unblocked product teams and allowed them to deploy multiple times a day, if not hourly without waiting for central approval.
 * **Cultural Transformation:** The "operations" team was successfully rebranded as a Platform Team. This shifted their focus from manual labor to "productizing" the infrastructure, leading to a significant increase in morale and a more collaborative, "DevOps-forward" culture.
 * **Operational Consistency & Integrity:** The implementation of "Golden Paths" ensured that every new service met the organization’s high standards for security, reliability, and observability.
-* **Empowered Ownership:** Engineers were empowered to "sleep better at night" because they now had the data and tools to proactively track, understand, and debug their own services while  moving as fast as the organization needed them to.
+* **Empowered Ownership:** Engineers were empowered to "sleep better at night" because they now had the data and tools to proactively track, understand, and debug their own services while moving as fast as the organization needed them to.
 
 ### Modernizing Scale, Multi-Account / Environment Cloud Migration and Streamlining Of Resources
 
