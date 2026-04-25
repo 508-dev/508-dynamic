@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/ExpertiseLayout.astro
+layout: ../../../layouts/ExpertiseLayout.astro
 title: "Product Engineering | 508.dev"
 headingSmall: "Product Engineering"
 heading: "Build Products People Love. Power Them with Engineering You Can Trust."
