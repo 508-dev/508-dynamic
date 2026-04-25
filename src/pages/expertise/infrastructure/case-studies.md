@@ -1,93 +1,11 @@
 ---
-layout: ../layouts/CaseStudiesLayout.astro
-title: "Case Studies | 508.dev"
-description: "Explore our success stories in Product, AI, Data, Observability, and Platform Engineering."
+layout: ../../../layouts/CaseStudiesLayout.astro
+title: "Infrastructure Engineering Case Studies | 508.dev"
+description: "Explore our success stories in Infrastructure Engineering."
 headingSmall: "Proven Success"
-heading: "Case Studies"
-headingSummary: "Real-world results delivered by our specialized engineering teams."
+heading: "Infrastructure Engineering Case Studies"
+headingSummary: "Real-world results delivered by our Infrastructure Engineering team."
 ---
-
-## Product Engineering
-
-### Revenue Acceleration, High-Performance Caching and Ad-Tech Optimization
-
-#### The Challenge
-
-A regional news platform was experiencing high latency and ballooning CMS costs. Average page response times were over 2 seconds, and inefficient ad-rendering was causing significant "revenue leakage."
-
-#### Our Solution
-
-Our "Special Ops" team implemented a sophisticated CDN caching layer with event-driven invalidation logic. We also performed a comprehensive "archaeological" audit of the legacy frontend code, optimizing API calls and server-side logic while upgrading the mobile application’s core dependencies which had been stagnant for years.
-
-#### The Results
-
-* **User Experience:** Achieved a 50% decrease in average response time (from 2s to 800ms) and a 47% reduction in payload sizes.
-* **Direct Savings:** Reduced CMS API costs from $2,500/month to nearly $0 through efficient caching.
-* **Revenue Growth:** Fixed ad-rendering issues and expanded ad-unit placements, resulting in a projected $180,000+ per year in additional earnings.
-
-
-
-## AI Engineering
-
-### Automating Trust, Eliminating a 6-Month Content Moderation Backlog via NLP
-
-#### The Challenge
-
-A high-traffic community platform was being throttled by a manual content moderation process. With a six-month backlog of user-generated content, user trust was eroding, and operational costs were skyrocketing. The manual process was inconsistent, expensive, and prevented the platform from scaling.
-
-#### Our Solution
-
-We spearheaded a "human-in-the-loop" AI initiative. Our team designed and deployed a Natural Language Processing (NLP) workflow that analyzed incoming content in real-time, assigning confidence scores to every entry. High-confidence "safe" content was approved instantly, while high-risk content was flagged for immediate human review.
-
-#### The Results
-
-* **Operational Excellence:** Eliminated the six-month backlog; time-to-moderation dropped from months to less than one second.
-* **Financial Impact:** Reduced moderation costs by 90%, saving the client over $225,000 annually.
-* **Product Growth:** Improved platform integrity and user engagement by removing the primary bottleneck to content growth.
-
-
-
-## Observability Engineering
-
-### From "Firefighting" to Zero Outages, Architecting an Enterprise Observability Stack
-
-#### The Challenge
-
-A major media organization suffered from frequent website crashes and a total lack of system visibility. The engineering culture had become reactive, losing tens of thousands of dollars in advertising revenue and thousands of engineering hours to "firefighting" 11+ major system outages in a single quarter.
-
-#### Our Solution
-
-We implemented a company-wide observability framework from the ground up. This included defining functional requirements for the entire stack, authoring "North Star" vision documents for metrics and alerting, and executing the hands-on technical setup. We deployed telemetry agents across Kubernetes clusters and built custom infrastructure dashboards to provide real-time visibility.
-
-#### The Results
-
-* **System Reliability:** System performing well in Service Level Agreements (SLAs).
-* **Immediate ROI:** Saved an estimated $5,000 in the first few weeks by preventing lost ad revenue.
-* **Cultural Shift:** Empowered teams to transition from reactive fixing to data-driven, proactive development, significantly increasing developer morale and well-earned sleep at night.
-
-
-
-## Data Engineering
-
-### Democratizing Data, Centralized Business Intelligence and Roadmap Alignment
-
-#### The Challenge
-
-A media group lacked a centralized mechanism to reason about product performance. Data was trapped in disparate spreadsheets owned by different departments, leading to misaligned priorities and projects being launched without clear KPIs.
-
-#### Our Solution
-
-We performed "data archaeology" to identify all critical business data points and built data pipelines to move this data into a centralized warehouse. We then created unified dashboards to "democratize" this data across the entire organization. This allowed us to collaborate with leadership to create a data-backed roadmap for every product.
-
-#### The Results
-
-* **Radical Transparency:** Enabled "on the same page" collaboration across executive, product, and engineering teams.
-* **Strategic Impact:** Exposed the "hidden cost" of product development, allowing for high-value tradeoff conversations.
-* **Efficiency:** Transitioned the organization from a "marketing-led" project mindset to a "user-centric" product mindset, improving the bottom line through better-prioritized features.
-
-
-
-## Platform Engineering
 
 ### From Bottleneck to Bedrock, Bootstrapping a Self-Service Internal Developer Platform (IDP)
 

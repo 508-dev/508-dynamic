@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/ExpertiseLayout.astro
+layout: ../../../layouts/ExpertiseLayout.astro
 title: "Observability Engineering | 508.dev"
 headingSmall: "Observability Engineering"
 heading: "See Everything. Predict Anything. Deliver Flawless Digital Experiences."

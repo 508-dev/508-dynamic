@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/ExpertiseLayout.astro
+layout: ../../../layouts/ExpertiseLayout.astro
 title: "AI Engineering | 508.dev"
 headingSmall: "AI Engineering"
 heading: "Turn AI Hype into Production Reality."

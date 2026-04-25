@@ -1,7 +1,7 @@
 ---
-layout: ../../layouts/ExpertiseLayout.astro
-title: "Platform Engineering | 508.dev"
-headingSmall: "Platform Engineering"
+layout: ../../../layouts/ExpertiseLayout.astro
+title: "Infrastructure Engineering | 508.dev"
+headingSmall: "Infrastructure Engineering"
 heading: "Build the Machine That Builds Your Business."
 headingSummary: "Stop letting your most expensive talent waste time wrestling with infrastructure. We build world-class Internal Developer Platforms that give your engineering teams a \"paved road\" to production, automating the busywork, baking in security, and accelerating your time-to-market."
 ---

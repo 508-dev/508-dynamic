@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/ExpertiseLayout.astro
+layout: ../../../layouts/ExpertiseLayout.astro
 title: "Data Engineering | 508.dev"
 headingSmall: "Data Engineering"
 heading: "Unleash the True Power of Your Data."
