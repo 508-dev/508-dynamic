@@ -2,7 +2,7 @@
 type Route = {
   name: string;
   route?: string;
-  subItems?: { name: string; route: string }[];
+  subItems?: Route[];
 };
 
 const routes: Route[] = [
@@ -16,22 +16,52 @@ const routes: Route[] = [
       {
         name: "Product",
         route: "/expertise/product",
+        subItems: [
+          {
+            name: "Case Studies",
+            route: "/expertise/product/case-studies",
+          },
+        ],
       },
       {
         name: "AI",
         route: "/expertise/ai",
+        subItems: [
+          {
+            name: "Case Studies",
+            route: "/expertise/ai/case-studies",
+          },
+        ],
       },
       {
         name: "Data",
         route: "/expertise/data",
+        subItems: [
+          {
+            name: "Case Studies",
+            route: "/expertise/data/case-studies",
+          },
+        ],
       },
       {
         name: "Observability",
         route: "/expertise/observability",
+        subItems: [
+          {
+            name: "Case Studies",
+            route: "/expertise/observability/case-studies",
+          },
+        ],
       },
       {
         name: "Infrastructure",
         route: "/expertise/infrastructure",
+        subItems: [
+          {
+            name: "Case Studies",
+            route: "/expertise/infrastructure/case-studies",
+          },
+        ],
       },
     ],
   },
@@ -149,13 +179,13 @@ function isActive(route?: string): boolean {
                   <div class="overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                     <div class="p-4">
                       {route.subItems.map((item) => (
-                        <div class="group/item relative flex items-center gap-x-6 rounded-lg p-3 text-sm leading-6 hover:bg-gray-50">
+                        <div class="group/item relative flex flex-col gap-y-1 rounded-lg p-3 text-sm leading-6 hover:bg-gray-50">
                           <div class="flex-auto">
                             <a
                               href={item.route}
                               class={`block font-semibold text-gray-900 ${
                                 isActive(item.route)
-                                  ? "border-b-4 border-indigo-600"
+                                  ? "border-b-4 border-indigo-600 w-fit"
                                   : ""
                               }`}
                             >
@@ -163,6 +193,25 @@ function isActive(route?: string): boolean {
                               <span class="absolute inset-0" />
                             </a>
                           </div>
+                          {item.subItems && (
+                            <div class="mt-1 hidden group-hover/item:flex flex-col gap-y-1 pl-4 border-l border-gray-100 relative z-10">
+                              {item.subItems.map((sub) => (
+                                <div class="relative">
+                                  <a
+                                    href={sub.route}
+                                    class={`block text-gray-600 hover:text-indigo-600 ${
+                                      isActive(sub.route)
+                                        ? "font-semibold text-indigo-600"
+                                        : ""
+                                    }`}
+                                  >
+                                    {sub.name}
+                                    <span class="absolute inset-0" />
+                                  </a>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       ))}
                     </div>
@@ -252,18 +301,64 @@ function isActive(route?: string): boolean {
                         </svg>
                       </summary>
                       <div class="mt-2 space-y-2">
-                        {route.subItems.map((item) => (
-                          <a
-                            href={item.route}
-                            class={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
-                              isActive(item.route)
-                                ? "border-l-4 border-indigo-600 pl-2"
-                                : ""
-                            }`}
-                          >
-                            {item.name}
-                          </a>
-                        ))}
+                        {route.subItems.map((item) => {
+                          if (item.subItems) {
+                            return (
+                              <details class="group/sub" name="expertise-sub">
+                                <summary
+                                  class={`flex w-full items-center justify-between rounded-lg py-2 pl-6 pr-3.5 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 cursor-pointer list-none [&::-webkit-details-marker]:hidden ${
+                                    isActive(item.route)
+                                      ? "border-l-4 border-indigo-600 pl-5"
+                                      : ""
+                                  }`}
+                                >
+                                  <a href={item.route} class="flex-auto">
+                                    {item.name}
+                                  </a>
+                                  <svg
+                                    class="h-5 w-5 flex-none transition-transform group-open/sub:rotate-180"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      fill-rule="evenodd"
+                                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                                      clip-rule="evenodd"
+                                    />
+                                  </svg>
+                                </summary>
+                                <div class="mt-1 pl-10 space-y-1">
+                                  {item.subItems.map((sub) => (
+                                    <a
+                                      href={sub.route}
+                                      class={`block rounded-lg py-1 pl-3 pr-3 text-xs font-medium leading-6 text-gray-600 hover:bg-gray-50 ${
+                                        isActive(sub.route)
+                                          ? "border-l-2 border-indigo-600 pl-2 text-indigo-600"
+                                          : ""
+                                      }`}
+                                    >
+                                      {sub.name}
+                                    </a>
+                                  ))}
+                                </div>
+                              </details>
+                            );
+                          }
+
+                          return (
+                            <a
+                              href={item.route}
+                              class={`block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50 ${
+                                isActive(item.route)
+                                  ? "border-l-4 border-indigo-600 pl-5"
+                                  : ""
+                              }`}
+                            >
+                              {item.name}
+                            </a>
+                          );
+                        })}
                       </div>
                     </details>
                   );
