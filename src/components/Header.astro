@@ -183,7 +183,7 @@ function isActive(route?: string): boolean {
                           <div class="flex-auto">
                             <a
                               href={item.route}
-                              class={`block font-semibold text-gray-900 ${
+                              class={`block font-semibold text-gray-900 hover:text-indigo-600 ${
                                 isActive(item.route)
                                   ? "border-b-4 border-indigo-600 w-fit"
                                   : ""
@@ -199,7 +199,7 @@ function isActive(route?: string): boolean {
                                 <div class="relative">
                                   <a
                                     href={sub.route}
-                                    class={`block text-gray-600 hover:text-indigo-600 ${
+                                    class={`block rounded-md px-2 py-1 text-gray-600 hover:text-indigo-600 hover:bg-gray-100/50 ${
                                       isActive(sub.route)
                                         ? "font-semibold text-indigo-600"
                                         : ""
