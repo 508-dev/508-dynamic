@@ -1,0 +1,50 @@
+---
+import Layout from "./Layout.astro";
+
+// @ts-ignore
+const { frontmatter } = Astro.props;
+---
+
+<Layout
+  title={frontmatter.title}
+  description={frontmatter.headingSummary}
+  image="/office.jpg"
+  data-theme="light"
+>
+  <div class="relative bg-white">
+    <div
+      class="mx-auto max-w-7xl lg:flex lg:justify-between lg:px-8 xl:justify-end"
+    >
+      <div class="px-6 lg:contents">
+        <div
+          class="mx-auto max-w-2xl pb-24 pt-[6%] sm:pb-32 lg:ml-8 lg:mr-0 lg:w-3/4 lg:max-w-none lg:flex-none xl:w-3/4"
+        >
+          <p class="text-base font-semibold leading-7 text-indigo-600">
+            {frontmatter.headingSmall}
+          </p>
+          <h1
+            class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+          >
+            {frontmatter.heading}
+          </h1>
+          <p class="mt-6 text-xl leading-8 text-gray-700">
+            {frontmatter.headingSummary}
+          </p>
+          <div
+            class="prose prose-xl prose-stone mt-10 max-w-xl text-base leading-7 text-gray-700 lg:max-w-none"
+          >
+            <slot />
+          </div>
+          <div class="mt-10 flex">
+            <a
+              href={`${Astro.url.pathname.replace(/\/$/, "")}/case-studies`}
+              class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            >
+              Case Studies
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
