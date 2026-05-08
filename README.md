@@ -36,11 +36,13 @@ bun run dev
 
 The Astro dev server now uses a deterministic worktree-specific port. By default,
 it hashes the repo path into the `4321-5320` range so separate worktrees usually
-avoid sharing the default port. Different worktrees can still collide because the
-range is finite. If that happens, override it locally with
-`WORKTREE_DEV_PORT`, `PORT`, `WORKTREE_DEV_BASE_PORT`,
-`WORKTREE_DEV_PORT_SPAN`, `WORKTREE_DEV_PORT_OFFSET`, or
-`WORKTREE_DEV_ROOT`.
+avoid sharing the default port. If the hashed port is blocked by Chromium-based
+browsers, the resolver walks forward to the next allowed port. Different
+worktrees can still collide because the range is finite. If that happens,
+override it locally with `WORKTREE_DEV_PORT`, `PORT`,
+`WORKTREE_DEV_BASE_PORT`, `WORKTREE_DEV_PORT_SPAN`,
+`WORKTREE_DEV_PORT_OFFSET`, or `WORKTREE_DEV_ROOT`. Explicit `PORT` and
+`WORKTREE_DEV_PORT` values must also be allowed by Chromium-based browsers.
 
 - Before making a commit, run prettier
 

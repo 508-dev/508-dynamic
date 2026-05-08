@@ -11,6 +11,15 @@ export const WORKTREE_DEV_ROOT_ENV = "WORKTREE_DEV_ROOT";
 
 const MAX_PORT = 65535;
 
+export const CHROME_RESTRICTED_PORTS = new Set([
+  1, 7, 9, 11, 13, 15, 17, 19, 20, 21, 22, 23, 25, 37, 42, 43, 53, 69, 77,
+  79, 87, 95, 101, 102, 103, 104, 109, 110, 111, 113, 115, 117, 119, 123,
+  135, 137, 139, 143, 161, 179, 389, 427, 465, 512, 513, 514, 515, 526, 530,
+  531, 532, 540, 548, 554, 556, 563, 587, 601, 636, 989, 990, 993, 995, 1719,
+  1720, 1723, 2049, 3659, 4045, 5060, 5061, 6000, 6566, 6665, 6666, 6667,
+  6668, 6669, 6697, 10080,
+]);
+
 function parsePortLike(value, name) {
   if (value === undefined || value === "") {
     return undefined;
@@ -50,6 +59,29 @@ function parseNonNegativeInteger(value, name) {
   return parsed;
 }
 
+function assertChromeAllowedPort(port, name) {
+  if (CHROME_RESTRICTED_PORTS.has(port)) {
+    throw new Error(
+      `${name} resolves to ${port}, which is blocked by Chromium-based browsers.`,
+    );
+  }
+}
+
+function resolveAllowedPort(basePort, span, preferredOffset) {
+  for (let i = 0; i < span; i += 1) {
+    const offset = (preferredOffset + i) % span;
+    const port = basePort + offset;
+
+    if (!CHROME_RESTRICTED_PORTS.has(port)) {
+      return { offset, port };
+    }
+  }
+
+  throw new Error(
+    `${WORKTREE_DEV_BASE_PORT_ENV} and ${WORKTREE_DEV_PORT_SPAN_ENV} do not include any ports allowed by Chromium-based browsers.`,
+  );
+}
+
 export function worktreePathKey(worktreeRoot) {
   return resolve(worktreeRoot)
     .split(/[\\/]+/)
@@ -70,13 +102,19 @@ export function resolveWorktreeDevPort({ env = process.env, worktreeRoot }) {
     throw new Error("worktreeRoot is required to resolve the dev server port.");
   }
 
+  const explicitWorktreePort = parsePortLike(
+    env[WORKTREE_DEV_PORT_ENV],
+    WORKTREE_DEV_PORT_ENV,
+  );
   const explicitPort =
-    parsePortLike(env[WORKTREE_DEV_PORT_ENV], WORKTREE_DEV_PORT_ENV) ??
-    parsePortLike(env.PORT, "PORT");
+    explicitWorktreePort ?? parsePortLike(env.PORT, "PORT");
+  const explicitPortEnvName =
+    explicitWorktreePort !== undefined ? WORKTREE_DEV_PORT_ENV : "PORT";
   const pathKey = worktreePathKey(resolvedWorktreeRoot);
 
   if (explicitPort !== undefined) {
     const span = DEFAULT_WORKTREE_DEV_PORT_SPAN;
+    assertChromeAllowedPort(explicitPort, explicitPortEnvName);
 
     return {
       basePort: DEFAULT_WORKTREE_DEV_BASE_PORT,
@@ -117,11 +155,13 @@ export function resolveWorktreeDevPort({ env = process.env, worktreeRoot }) {
     );
   }
 
+  const resolvedPort = resolveAllowedPort(basePort, span, offset);
+
   return {
     basePort,
-    offset,
+    offset: resolvedPort.offset,
     pathKey,
-    port: basePort + offset,
+    port: resolvedPort.port,
     span,
     usingExplicitPort: false,
   };
