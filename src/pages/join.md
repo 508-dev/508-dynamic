@@ -24,7 +24,7 @@ all of our competition is overcharging their clients and underpaying their
 engineers. By organizing ourselves as a co-op, we can get better engineering for
 our clients, at more competitive rates, while getting more fair pay for our
 engineers and helping excellent engineers stand out from the crowds of other
-offshore engineers, creating a true win-win situation.
+global engineers, creating a true win-win situation.
 
 Delivering for clients isn't enough. Our goal is also to grow our engineers,
 with the long term objective of developing our own software products in-house,

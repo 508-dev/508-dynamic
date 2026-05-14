@@ -1,8 +1,8 @@
 # 508.dev
 
-> 508.dev is an AI-native engineering co-op connecting companies with vetted offshore developers.
+> 508.dev is an AI-native engineering co-op connecting companies with vetted global developers.
 
-508.dev provides offshore engineering talent and delivery support across frontend, backend, AI/ML, data science, and blockchain. The company emphasizes high engineering standards, co-op ownership, and modern AI coding workflows.
+508.dev provides global engineering talent and delivery support across product, frontend, backend, AI/ML, data science, cloud infrastructure, and blockchain. The company emphasizes high engineering standards, co-op ownership, and modern AI coding workflows.
 
 ## Primary Pages
 
@@ -15,11 +15,13 @@
 
 ## Services
 
-- Offshore frontend engineering
-- Offshore backend engineering
+- Global frontend engineering
+- Global backend engineering
+- Product engineering
 - AI and machine learning engineering
 - Data science
-- Blockchain development
+- Cloud infrastructure engineering
+- Blockchain engineering
 
 ## Contact
 

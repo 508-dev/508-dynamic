@@ -11,13 +11,13 @@
     "Engineers keep the majority of the rate",
     "High project ownership by members",
     "Small, vetted talent pool ensures quality",
-    "Best possible offshore engineering talent",
+    "Best possible global engineering talent",
     "Transparent and accurate estimates"
   ],
-  "pricing_2_title": "Agencies",
+  "pricing_2_title": "Traditional Vendors",
   "pricing_2_number": "30 to 90%",
   "pricing_2_small": "overhead",
-  "pricing_2_description": "High rates and high margins make it impossible for agencies to get you good value for your money.",
+  "pricing_2_description": "High rates and high margins make it hard for traditional vendors to deliver strong value for your money.",
   "pricing_2_features": [
     "Low cut of bill rate means no ownership",
     "Bloated talent pools, high churn",
@@ -30,7 +30,7 @@
   "pricing_facts": [
     {
       "title": "Co-ownership",
-      "description": "Because every member is a co-owner, product ownership is higher than in agencies. The co-op's portfolio and reputation is in the hands of our members."
+      "description": "Because every member is a co-owner, product ownership is higher than in traditional vendor models. The co-op's portfolio and reputation is in the hands of our members."
     },
     {
       "title": "Fair Rates",
@@ -38,7 +38,7 @@
     },
     {
       "title": "Unbeatable Margin",
-      "description": "Agencies need high margin for their shareholders. With us, you're able to get as close as possible \"to the metal\" of an engineer's bill rate without onboarding them."
+      "description": "Traditional vendors need high margin for their shareholders. With us, you're able to get as close as possible \"to the metal\" of an engineer's bill rate without onboarding them."
     },
     {
       "title": "High Quality",
@@ -49,16 +49,16 @@
       "description": "The people estimating projects are the same people building them, allowing us to give highly accurate estimates."
     },
     {
-      "title": "Offshore",
-      "description": "Our engineers across the world are typically available for more competitive rates than local."
+      "title": "Global",
+      "description": "Our engineers work across the world, giving clients access to exceptional talent at competitive rates."
     },
     {
       "title": "Organization",
-      "description": "Being a co-owner comes with huge responsibility, meaning membership self-selects for highly independent, self-managed individuals."
+      "description": "Being a co-owner comes with huge responsibility, meaning membership self-selects for highly-skilled, driven builders."
     },
     {
       "title": "The Best Team",
-      "description": "Nobody can beat us on our margin on rate, so we have the best offshore engineers in the world. Plain and simple."
+      "description": "Nobody can beat us on our margin on rate, so we can bring together exceptional engineers from around the world. Plain and simple."
     }
   ]
 }
