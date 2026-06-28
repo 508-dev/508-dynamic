@@ -34,7 +34,7 @@ further.
 Regardless of your skill level, or even if you have no project experience at all
 and are just interested in becoming an engineer, we'd like to talk. Take a look
 at our [values](https://wiki.508.dev/s/values), and if they match with yours,
-fill out our [intake form](https://forms.gle/ecyp49aEugS75Dhf9) . Or, take a look at some of our
+fill out our [intake form](https://tally.so/r/2ER4Dp) . Or, take a look at some of our
 [open source projects](https://wiki.508.dev/s/foss-project-index), to see how
 you can get involved. We also have a
 [wiki article](https://wiki.508.dev/s/how-to-contribute-to-a-508-project) on the
@@ -49,7 +49,7 @@ thus subcontractors for our clients.
 In order to subcontract through 508.dev, the community needs to understand your
 skillset and abilities. That means "joining" the co-op, which really just means
 joining our Discord server and hanging out. To join our Discord server, you
-first need to fill out our [intake form](https://forms.gle/ecyp49aEugS75Dhf9). A
+first need to fill out our [intake form](https://tally.so/r/2ER4Dp). A
 508 member will be in touch when we have capacity to consider new members. Then,
 you'll be asked to make a semi-trivial contribution to the co-op, either to one
 of our FOSS projects, our blog, or in some other way. You can learn more about
