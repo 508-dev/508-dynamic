@@ -1,5 +1,19 @@
 [
   {
+    "title": "Revision History",
+    "subtitle": "Chrome Extension for Google Docs & Slides",
+    "url": "https://www.revisionhistory.com/",
+    "testimonial": {
+      "quote": "Working with 508 has been a 10/10 experience! I'd strongly recommend 508 to anyone looking for amazing dev work for projects/businesses of all shapes and sizes. They're responsive, smart, easy to work with, and super talented. We couldn't be happier to have found 508 and have now had the pleasure of working with them and their engineers for over a year!",
+      "author": "Buzz Rubenstein",
+      "role": "Revision History"
+    },
+    "p": [
+      "Revision History is a Chrome extension that helps educators understand how students write in Google Docs and Slides, including document replay, writing pattern analysis, editing history, and copy/paste detection.",
+      "508.dev has supported the Revision History team as it builds and improves a classroom-focused product trusted by a large educator audience."
+    ]
+  },
+  {
     "title": "VoyTravel",
     "subtitle": "AI-Powered Hotel Booking Platform",
     "p": [
