@@ -17,18 +17,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.8",
-    "@tailwindcss/vite": "^4.2.4",
+    "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.1",
-    "tailwindcss": "^4.2.2",
+    "tailwindcss": "^4.3.0",
     "tailwindcss-bg-patterns": "^0.3.0",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
-    "@typescript-eslint/parser": "^8.59.2",
+    "@typescript-eslint/parser": "^8.59.4",
     "baseline-browser-mapping": "^2.10.27",
-    "daisyui": "^5.5.19",
-    "eslint": "^8.57.0",
+    "daisyui": "^5.5.20",
+    "eslint": "^10.4.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^1.7.0",
     "eslint-plugin-jsx-a11y": "^6.10.2",
