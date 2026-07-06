@@ -4,7 +4,11 @@ import Layout from "../layouts/Layout.astro";
 type Project = {
   name: string;
   description: string;
-  repo: string;
+  repo?: string;
+  sourceLinks?: {
+    label: string;
+    repo: string;
+  }[];
   tags: string[];
   featured?: boolean;
   url?: string;
@@ -14,15 +18,17 @@ type Project = {
 
 const projects: Project[] = [
   {
-    name: "508-devkit",
-    description: "Sane conventions for new coding projects.",
+    name: "508 Devkit",
+    description:
+      "Starter conventions for new software projects, including repo structure, tooling, and defaults as guidance for AI coding agents.",
     repo: "https://github.com/508-dev/508-devkit",
     tags: ["Project conventions"],
     featured: true,
   },
   {
-    name: "interview-as-a-service",
-    description: "Technical interviews with 508 members.",
+    name: "Interview as a Service",
+    description:
+      "A small app for scheduling practice technical interviews with 508 members and candidates.",
     repo: "https://github.com/508-dev/interview-as-a-service",
     tags: ["Django", "HTMX"],
     featured: true,
@@ -30,8 +36,9 @@ const projects: Project[] = [
     screenshot: "/open-source/interview-as-a-service.png",
   },
   {
-    name: "favorite-places",
-    description: "Convert public Google Places Lists into a beautiful viewer.",
+    name: "Favorite Places",
+    description:
+      "Turn public Google Places Lists into a shareable collection with improvements over the regular Google Maps interface, such as searching and filtering within a list.",
     repo: "https://github.com/508-dev/favorite-places",
     tags: ["Astro", "CSS", "TypeScript", "Python"],
     featured: true,
@@ -40,23 +47,24 @@ const projects: Project[] = [
     screenshot: "/open-source/favorite-places.png",
   },
   {
-    name: "gmaps-scraper",
+    name: "Google Maps Scraper",
     description:
-      "A scraper for Google Places Lists and Maps Places. Powers Favorite Places.",
+      "Scrapes Google Places Lists and Maps Places. Powers Favorite Places.",
     repo: "https://github.com/508-dev/gmaps-scraper",
     tags: ["Python"],
     featured: true,
   },
   {
-    name: "house-calendar",
-    description: "Show room availability from an ICS link.",
+    name: "House Calendar",
+    description:
+      "Show room availability from ICS calendar links so shared spaces are easier to book.",
     repo: "https://github.com/508-dev/house-calendar",
     tags: ["TypeScript", "React", "TanStack Start", "Drizzle", "Postgres"],
     featured: true,
     screenshot: "/open-source/house-calendar.png",
   },
   {
-    name: "media-crm",
+    name: "Media CRM",
     description:
       "CRM to track media consumption across TV shows, movies, books, and more.",
     repo: "https://github.com/508-dev/media-crm",
@@ -74,48 +82,55 @@ const projects: Project[] = [
     note: "Temporarily deployed on Caleb's homelab.",
   },
   {
-    name: "friend-library",
-    description: "App to borrow things from friends.",
+    name: "Friend Library",
+    description:
+      "A borrowing app for friends who want to lend books, tools, gear, and other things.",
     repo: "https://github.com/508-dev/friend-library",
     tags: ["Django", "HTMX"],
     url: "https://stuff4friends.508.dev",
   },
   {
-    name: "running-calorie-average",
-    description: "Simple calorie averages webapp.",
+    name: "Running Calorie Average",
+    description:
+      "A simple web app for tracking calorie averages over time without spreadsheet setup.",
     repo: "https://github.com/508-dev/running-calorie-average",
     tags: ["TypeScript", "Svelte", "SvelteKit", "HTML", "CSS"],
     url: "https://calories.508.dev",
   },
   {
-    name: "english-vehicles-tw",
+    name: "English Vehicles Taiwan",
     description:
-      "Static site for an English-language vehicle service in Taiwan.",
+      "Static site for an English-language vehicle service helping foreigners in Taiwan.",
     repo: "https://github.com/508-dev/english-vehicles-tw",
     tags: ["TypeScript", "Astro", "CSS"],
     url: "https://englishvehicles.tw",
   },
   {
-    name: "game-remix-guesser-backend",
-    description: "Backend for the guessagame game.",
-    repo: "https://github.com/508-dev/game-remix-guesser-backend",
-    tags: ["Python", "PostgreSQL", "FastAPI", "SQLAlchemy", "Docker"],
-  },
-  {
-    name: "game-remix-guesser-frontend",
-    description: "Frontend SPA for the guessagame game.",
-    repo: "https://github.com/508-dev/game-remix-guesser-frontend",
-    tags: ["TypeScript", "Vue", "CSS"],
+    name: "Guess a Game",
+    description:
+      "A game guessing app with a Vue frontend, FastAPI backend, and public live site.",
+    sourceLinks: [
+      {
+        label: "Frontend source",
+        repo: "https://github.com/508-dev/game-remix-guesser-frontend",
+      },
+      {
+        label: "Backend source",
+        repo: "https://github.com/508-dev/game-remix-guesser-backend",
+      },
+    ],
+    tags: ["TypeScript", "Vue", "Python", "FastAPI", "PostgreSQL"],
     url: "https://guessagame.508.dev",
   },
   {
-    name: "quick-taiwan-conversions",
-    description: "Useful conversions for living in Taiwan.",
+    name: "Quick Taiwan Conversions",
+    description:
+      "Quick unit and everyday conversions for people living in or moving to Taiwan.",
     repo: "https://github.com/508-dev/quick-taiwan-conversions",
     tags: ["TypeScript", "Vue"],
   },
   {
-    name: "travel-cards",
+    name: "Travel Cards",
     description:
       "SPA to generate business cards with allergy info and other travel details.",
     repo: "https://github.com/508-dev/travel-cards",
@@ -127,6 +142,9 @@ const projects: Project[] = [
 const featuredProjects = projects.filter((project) => project.featured);
 const otherProjects = projects.filter((project) => !project.featured);
 const githubOrgUrl = "https://github.com/508-dev";
+const getProjectSourceLinks = (project: Project) =>
+  project.sourceLinks ??
+  (project.repo ? [{ label: "Source", repo: project.repo }] : []);
 
 const openSourceStructuredData = {
   "@context": "https://schema.org",
@@ -134,13 +152,13 @@ const openSourceStructuredData = {
   name: "508.dev Open Source",
   url: "https://508.dev/open-source",
   description:
-    "Open source projects from 508.dev, including coding project conventions, interview tools, Google Places utilities, internal tools, and public web apps.",
+    "Open source projects from 508.dev, including project conventions, interview tools, Google Places utilities, member tools, and small public web apps.",
   mainEntity: {
     "@type": "ItemList",
     itemListElement: projects.map((project, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      url: project.repo,
+      url: project.repo ?? project.sourceLinks?.[0]?.repo ?? project.url,
       name: project.name,
       description: project.description,
     })),
@@ -150,7 +168,7 @@ const openSourceStructuredData = {
 
 <Layout
   title="Open Source Projects | 508.dev"
-  description="Explore open source projects from 508.dev, including developer tooling, interview software, Google Places utilities, and public web apps."
+  description="Open source projects from 508.dev, including project conventions, interview tools, Google Places utilities, member tools, and small public web apps."
   image="/computer.jpg"
   structuredData={openSourceStructuredData}
   data-theme="light"
@@ -162,16 +180,17 @@ const openSourceStructuredData = {
       >
         <div class="min-w-0 max-w-3xl">
           <p class="text-sm font-semibold uppercase text-cyan-300">
-            508.dev on GitHub
+            Free Software
           </p>
           <h1 class="mt-5 break-words text-3xl font-bold sm:text-6xl">
-            Open source from the 508 workshop
+            Open source at 508.dev
           </h1>
           <p
             class="mt-6 max-w-2xl break-words text-lg leading-8 text-slate-300"
           >
-            Projects we use to codify how we work, publish what we learn, and
-            ship useful tools for members, friends, and public communities.
+            508 software should always be Free as in Freedom. We maintain these
+            open source projects in that spirit, and contributions are a way to
+            learn how we work.
           </p>
           <div class="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
@@ -215,7 +234,7 @@ const openSourceStructuredData = {
             <p class="text-white">{projects.length} public projects</p>
             <p>
               <span class="text-cyan-300">{featuredProjects.length}</span>
-              highlighted for conventions, interviews, writing, and reusable utilities
+              maintained for conventions, interviews, maps, and member tools
             </p>
           </div>
         </div>
@@ -229,12 +248,10 @@ const openSourceStructuredData = {
           <h2
             class="mt-3 break-words text-3xl font-bold text-gray-900 sm:text-4xl"
           >
-            Projects we care about most
+            Core projects
           </h2>
           <p class="mt-5 text-base leading-7 text-gray-600">
-            These are the projects most central to how 508 works in public:
-            project setup, interviews, publishing, local communities, and
-            reusable infrastructure for small web tools.
+            These are our most active and relevant projects.
           </p>
         </div>
 
@@ -277,15 +294,17 @@ const openSourceStructuredData = {
                     ))}
                   </div>
                   <div class="mt-6 flex flex-wrap items-center gap-4 text-sm font-semibold">
-                    <a
-                      href={project.repo}
-                      class="text-cyan-700 hover:text-cyan-600"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Source
-                      <span aria-hidden="true"> -&gt;</span>
-                    </a>
+                    {getProjectSourceLinks(project).map((source) => (
+                      <a
+                        href={source.repo}
+                        class="text-cyan-700 hover:text-cyan-600"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source.label}
+                        <span aria-hidden="true"> -&gt;</span>
+                      </a>
+                    ))}
                     {project.url && (
                       <a
                         href={project.url}
@@ -314,11 +333,10 @@ const openSourceStructuredData = {
               More projects
             </p>
             <h2 class="mt-3 break-words text-3xl font-bold text-gray-900">
-              Useful apps, experiments, and member tools
+              More public repos
             </h2>
             <p class="mt-5 text-base leading-7 text-gray-600">
-              Smaller public projects that solve practical problems: lending,
-              media tracking, travel, Taiwan utilities, and games.
+              These are some other projects and/or experiments.
             </p>
           </div>
 
@@ -345,15 +363,17 @@ const openSourceStructuredData = {
                     ))}
                   </div>
                   <div class="mt-5 flex flex-wrap gap-4 text-sm font-semibold">
-                    <a
-                      href={project.repo}
-                      class="text-cyan-700 hover:text-cyan-600"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Source
-                      <span aria-hidden="true"> -&gt;</span>
-                    </a>
+                    {getProjectSourceLinks(project).map((source) => (
+                      <a
+                        href={source.repo}
+                        class="text-cyan-700 hover:text-cyan-600"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {source.label}
+                        <span aria-hidden="true"> -&gt;</span>
+                      </a>
+                    ))}
                     {project.url && (
                       <a
                         href={project.url}
