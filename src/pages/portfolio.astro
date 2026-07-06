@@ -1,16 +1,22 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import PortfolioItem from "../components/PortfolioItem.astro";
-import { getEntry } from 'astro:content';
+import { getEntry } from "astro:content";
 
 interface PortfolioItemData {
   subtitle: string;
   title: string;
-  p: string[];
-  img: string;
+  p?: string[];
+  img?: string;
+  url?: string;
+  testimonial?: {
+    quote: string;
+    author: string;
+    role?: string;
+  };
 }
 
-const portfolioEntry = await getEntry('data', 'portfolio');
+const portfolioEntry = await getEntry("data", "portfolio");
 
 if (!portfolioEntry) {
   throw new Error("Missing content entry: data/portfolio");
@@ -47,15 +53,18 @@ const portfolioData = portfolioEntry.data as PortfolioItemData[];
     <div>
       {
         portfolioData.map((portfolioItem: PortfolioItemData, i: number) => {
+          const p = portfolioItem.p ?? [];
           const item = {
             id: i + 1,
             small: portfolioItem.subtitle,
             header: portfolioItem.title,
-            content_p1: portfolioItem.p[0],
-            content_p2: portfolioItem.p[1],
-            content_p3: portfolioItem.p[2],
-            content_p4: portfolioItem.p[3],
+            content_p1: p[0],
+            content_p2: p[1],
+            content_p3: p[2],
+            content_p4: p[3],
             img: portfolioItem.img,
+            url: portfolioItem.url,
+            testimonial: portfolioItem.testimonial,
           };
           return <PortfolioItem item={item} />;
         })
