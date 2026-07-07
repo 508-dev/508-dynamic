@@ -19,7 +19,7 @@
     "@astrojs/check": "^0.9.8",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.1",
-    "tailwindcss": "^4.3.0",
+    "tailwindcss": "^4.3.2",
     "tailwindcss-bg-patterns": "^0.3.0",
     "typescript": "^5.9.3",
     "vite": "7.3.5"
