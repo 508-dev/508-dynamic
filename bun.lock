@@ -11,7 +11,7 @@
         "tailwindcss": "^4.3.2",
         "tailwindcss-bg-patterns": "^0.3.0",
         "typescript": "^5.9.3",
-        "vite": "8.0.13",
+        "vite": "8.1.5",
       },
       "devDependencies": {
         "@tailwindcss/typography": "^0.5.20",
