@@ -27,7 +27,7 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.20",
     "@typescript-eslint/parser": "^8.61.0",
-    "baseline-browser-mapping": "^2.10.27",
+    "baseline-browser-mapping": "^2.11.10",
     "daisyui": "^5.7.4",
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
