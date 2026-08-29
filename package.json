@@ -18,7 +18,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.1.6",
+    "astro": "^7.2.7",
     "tailwindcss": "^4.3.2",
     "tailwindcss-bg-patterns": "^0.3.0",
     "typescript": "^5.9.3",
