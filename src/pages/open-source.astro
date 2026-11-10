@@ -12,6 +12,10 @@ type Project = {
   tags: string[];
   featured?: boolean;
   url?: string;
+  links?: {
+    label: string;
+    href: string;
+  }[];
   note?: string;
   screenshot?: string;
 };
@@ -71,6 +75,16 @@ const projects: Project[] = [
     tags: [
       "kotlin",
       "android",
+    ],
+    links: [
+      {
+        label: "Google Play",
+        href: "https://play.google.com/store/apps/details?id=dev.co508.soundboard",
+      },
+      {
+        label: "F-Droid",
+        href: "https://f-droid.org/en/packages/dev.co508.soundboard/",
+      },
     ],
     featured: true,
     screenshot: "/open-source/soundboard.png",
@@ -411,6 +425,17 @@ const openSourceStructuredData = {
                         <span aria-hidden="true"> -&gt;</span>
                       </a>
                     )}
+                    {project.links?.map((link) => (
+                      <a
+                        href={link.href}
+                        class="text-gray-900 hover:text-cyan-700"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.label}
+                        <span aria-hidden="true"> -&gt;</span>
+                      </a>
+                    ))}
                   </div>
                 </div>
               </article>
@@ -480,6 +505,17 @@ const openSourceStructuredData = {
                         <span aria-hidden="true"> -&gt;</span>
                       </a>
                     )}
+                    {project.links?.map((link) => (
+                      <a
+                        href={link.href}
+                        class="text-gray-900 hover:text-cyan-700"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.label}
+                        <span aria-hidden="true"> -&gt;</span>
+                      </a>
+                    ))}
                   </div>
                 </article>
               ))
