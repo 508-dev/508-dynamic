@@ -16,7 +16,7 @@
     "eslint": "eslint src/ --fix"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.12",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.7",
     "tailwindcss": "^4.3.3",
